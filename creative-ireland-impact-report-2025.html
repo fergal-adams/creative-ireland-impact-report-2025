@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Ireland Impact Report 2025</title>
+<style>
+@font-face{font-family:'Sparose';src:url('assets/Document fonts/fonnts.com-Sparose.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Quadraat Pro';src:url('assets/quadraat-regular.ttf') format('truetype');font-weight:400;font-style:normal}
+@font-face{font-family:'Quadraat Pro';src:url('assets/quadraat-bold.ttf') format('truetype');font-weight:700;font-style:normal}
+@font-face{font-family:'Founders Grotesk';src:url('assets/founders-regular.otf') format('opentype');font-weight:400;font-style:normal}
+@font-face{font-family:'Founders Grotesk';src:url('assets/founders-italic.otf') format('opentype');font-weight:400;font-style:italic}
+@font-face{font-family:'Founders Grotesk';src:url('assets/founders-medium.otf') format('opentype');font-weight:500;font-style:normal}
+@font-face{font-family:'Founders Grotesk';src:url('assets/founders-semibold.otf') format('opentype');font-weight:600 900;font-style:normal}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --tan:#b8a86e;
+  --tan-dark:#9a8a52;
+  --tan-bg:#c8b88a;
+  --tan-card:#c4b47a;
+  --page-bg:#d8ceb0;
+  --off-white:#ede8da;
+  --dark:#1a1a18;
+  --mid:#3a3830;
+  --muted:#6a6450;
+  --rule:#c4b890;
+  --script:'Sparose',cursive;
+  --serif:'Quadraat Pro',serif;
+  --body:'Founders Grotesk',sans-serif;
+  --ui:'Founders Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--dark);background:var(--page-bg);font-size:15px;line-height:1.65}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;
+  color:#fff;
+  background:transparent;
+  transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease;
+}
+nav.scrolled{
+  color:var(--dark);
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(0,0,0,0.08);
+}
+.nav-logos{display:flex;align-items:center}
+.nav-logo-img{height:120px;width:auto}
+.nav-menu{
+  font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;cursor:pointer;background:none;border:none;color:currentColor;
+}
+
+/* ── NAV OVERLAY ── */
+#nav-overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:rgba(26,26,24,0.96);
+  align-items:center;justify-content:flex-start;
+  padding:80px 80px 80px 100px;
+}
+#nav-overlay.open{display:flex}
+#overlay-close{
+  position:absolute;top:28px;right:44px;
+  background:none;border:none;color:#fff;
+  font-family:var(--ui);font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;opacity:0.7;
+}
+#overlay-close:hover{opacity:1}
+.overlay-toc{list-style:none;padding:0;border-left:2px solid #87784F;padding-left:28px;}
+.overlay-toc li{
+  font-family:var(--serif);font-size:42px;font-weight:700;
+  line-height:1.25;
+}
+.overlay-toc li a{color:#fff;text-decoration:none;}
+.overlay-toc li a:hover{color:#87784F;}
+
+/* ── YOUTUBE FALLBACK ── */
+.yt-play-btn{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:rgba(255,255,255,0.85);
+  font-family:var(--ui);font-size:11px;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;
+  transition:color 0.2s,opacity 0.2s;
+}
+.yt-play-btn:hover{color:#fff;opacity:1}
+.yt-play-btn svg{width:64px;height:64px;fill:rgba(255,255,255,0.75);transition:fill 0.2s;}
+.yt-play-btn:hover svg{fill:#fff}
+
+/* ── VIDEO BANNER ── */
+.video-banner{
+  position:relative;
+  height:100vh;overflow:hidden;background:#2a2a28;
+}
+.photo-banner.hero{height:100vh}
+.photo-banner.hero .photo-banner-text{bottom:56px;left:56px}
+.photo-banner.hero .photo-banner-text .script{font-size:88px;line-height:1;margin-bottom:24px}
+.photo-banner.hero .photo-banner-text .serif{font-size:120px;font-weight:700;line-height:0.92}
+.video-banner video{
+  position:absolute;
+  top:50%;left:50%;
+  width:177.78vh;height:100vh;
+  min-width:100%;min-height:100%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  object-fit:cover;
+}
+.video-banner iframe{
+  position:absolute;
+  top:50%;left:50%;
+  width:177.78vh;height:100vh;
+  min-width:100%;min-height:100%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  border:none;
+}
+.video-banner-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.45) 100%);
+  z-index:1;
+}
+.video-banner-text{
+  position:absolute;bottom:48px;left:48px;color:#fff;z-index:2;
+}
+.video-banner-text .script-title{
+  font-family:var(--script);font-size:110px;line-height:100px;display:block;
+  text-shadow:2px 3px 12px rgba(0,0,0,0.5);
+}
+.video-banner-text .serif-title{
+  font-family:var(--serif);font-size:110px;font-weight:700;line-height:100px;display:block;
+  text-shadow:2px 3px 12px rgba(0,0,0,0.5);
+}
+.video-banner-caption{
+  position:absolute;top:14px;right:16px;z-index:2;
+  font-family:var(--ui);font-size:11px;color:rgba(255,255,255,0.7);
+}
+
+/* ── PHOTO BANNER ── */
+.photo-banner{
+  position:relative;height:100vh;overflow:hidden;
+}
+.photo-banner img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+}
+.photo-banner-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.25)}
+.photo-banner-text{position:absolute;bottom:44px;left:44px;color:#fff;z-index:2}
+.photo-banner-text .script{
+  display:block;
+  font-family:var(--script);font-size:110px;line-height:100px;
+  text-shadow:2px 3px 14px rgba(0,0,0,0.55);
+}
+.photo-banner-text .serif{
+  display:block;
+  font-family:var(--serif);font-size:110px;font-weight:700;line-height:100px;
+  text-shadow:2px 3px 14px rgba(0,0,0,0.55);
+}
+.photo-banner-caption{
+  position:absolute;top:14px;right:16px;z-index:2;
+  font-family:var(--ui);font-size:11px;color:rgba(255,255,255,0.7);
+}
+
+/* ── PAGE BG SECTIONS ── */
+.page-bg{background:var(--page-bg)}
+.white-bg{background:#fff}
+.off-white-bg{background:var(--off-white)}
+
+/* ── CONTENTS ── */
+.contents-section{
+  display:grid;grid-template-columns:1fr 2fr;
+  padding:56px 80px;gap:40px;
+  background:var(--page-bg);
+}
+.contents-label{font-family:var(--serif);font-size:26px;font-weight:700;line-height:calc(27/26);color:#000;margin:0;padding:0}
+.contents-list{list-style:none;margin:0;padding:0;border-left:2px solid #000;padding-left:16px}
+.contents-list li{
+  font-family:var(--serif);font-size:36px;font-weight:700;
+  line-height:calc(50/36);
+}
+.contents-list li a{color:var(--dark);text-decoration:none}
+.contents-list li a:hover{color:#87784F;text-decoration:none}
+
+/* ── TWO-COL CONTENT ── */
+.two-col{
+  display:grid;grid-template-columns:1fr 1fr;
+  padding:64px 80px;gap:56px;align-items:start;
+}
+.two-col.three-col{grid-template-columns:1fr 1fr 1fr}
+.two-col-left-wider{grid-template-columns:1.1fr 1fr 1fr}
+
+/* ── LEFT COL STYLES ── */
+.section-script-title{
+  font-family:var(--script);font-size:28px;color:var(--dark);
+  display:block;margin-bottom:6px;line-height:1.1;
+}
+.partners-box{
+  background:rgba(0,0,0,0.06);border-radius:4px;
+  padding:20px 20px;margin-bottom:32px;
+  font-family:var(--ui);font-size:14px;font-weight:600;
+  color:var(--dark);line-height:calc(18/14);
+  max-width:400px;
+}
+.big-pull{
+  font-family:var(--serif);font-size:22px;line-height:1.45;
+  color:var(--dark);font-weight:400;
+}
+.big-pull.italic{font-family:var(--serif);font-size:25px;font-weight:400;line-height:calc(27/25);color:#87784F}
+#communities-content .big-pull{font-size:38px;line-height:1.2;color:var(--dark)}
+
+/* ── RIGHT COL STYLES ── */
+.right-col p{font-family:var(--body);font-size:16px;font-weight:400;line-height:calc(22/16);color:#000;margin-bottom:14px}
+.right-col p:last-child{margin-bottom:0}
+.right-col h3{
+  font-family:var(--serif);font-size:25px;font-weight:400;
+  line-height:calc(27/25);color:#87784F;
+  margin:24px 0 8px;
+}
+.right-col h3:first-child{margin-top:0}
+.right-col a{color:var(--dark)}
+.right-col ul{padding-left:18px;margin:8px 0}
+.right-col ul li{font-size:13px;color:var(--mid);margin-bottom:6px;line-height:1.55}
+
+/* ── THREE COL INTRO ── */
+.intro-left h2,.two-col h2,.impact-cards h2{font-family:var(--serif);font-size:26px;font-weight:700;line-height:calc(27/26);color:#000;margin-bottom:8px}
+.intro-left .minister-name{
+  font-family:var(--serif);font-size:25px;font-weight:400;line-height:calc(27/25);color:#87784F;margin-bottom:20px;
+}
+
+/* ── PHOTO + CAPTION ── */
+.photo-block{display:flex;flex-direction:column;gap:8px}
+.photo-block img{width:100%;display:block;object-fit:cover;border-radius:24px}
+.photo-block.tall img{aspect-ratio:3/4}
+.photo-caption{font-family:var(--ui);font-size:11px;color:var(--muted);line-height:1.4}
+
+/* ── STACKED IMAGES ── */
+.stacked-images{display:flex;flex-direction:column;gap:16px}
+.stacked-images .photo-block{flex:1}
+
+/* ── DIVIDER ── */
+.hr{height:1px;background:var(--rule);margin:0}
+
+/* ── OVERALL IMPACT CARDS ── */
+.impact-cards{
+  display:grid;grid-template-columns:220px 1fr;
+  padding:64px 80px;gap:48px;
+  background:var(--page-bg);
+  align-items:start;
+}
+.impact-heading{padding-top:4px}
+.impact-heading h2{font-family:var(--serif);font-size:26px;font-weight:700;line-height:calc(27/26);color:#000}
+.impact-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:16px;
+}
+.impact-card{
+  background:var(--tan-card);border-radius:20px;padding:36px 32px;
+}
+.impact-num{
+  font-family:var(--ui);font-size:60px;font-weight:700;line-height:1;
+  color:var(--dark);letter-spacing:-0.02em;
+}
+.impact-label{
+  font-family:var(--ui);font-size:15px;font-weight:600;line-height:1.25;color:var(--dark);
+  display:block;margin-top:10px;margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid rgba(0,0,0,0.18);
+}
+.impact-desc{font-family:var(--body);font-size:16px;color:var(--dark);line-height:calc(22/16)}
+.impact-desc ul{padding-left:0;list-style:none;margin-top:8px}
+.impact-desc ul li{
+  padding:5px 0;font-size:13px;color:var(--dark);
+  padding-left:20px;position:relative;
+}
+.impact-desc ul li::before{
+  content:'—';position:absolute;left:0;color:var(--tan-dark);
+}
+
+/* ── STATS ROW ── */
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  margin:0 80px;
+}
+.stat-cell{
+  padding:32px 40px;border-right:1px solid var(--rule);
+}
+.stat-cell:last-child{border-right:none}
+.stat-num{
+  font-family:var(--serif);font-size:64px;font-weight:700;line-height:1;color:var(--dark);
+}
+.stat-lbl{
+  font-family:var(--ui);font-size:13px;color:var(--muted);
+  display:block;margin-top:4px;
+}
+
+/* ── PILLARS TABLE ── */
+/* ── PILLARS PANEL ── */
+.pillars-panel{
+  background:rgba(255,255,255,0.10);
+  border-radius:0 28px 28px 0;
+  padding:32px 48px 64px 80px;
+  align-self:stretch;
+}
+.pillars-table{width:100%;border-collapse:collapse;margin-top:20px}
+.pillars-table tr{border-bottom:1px solid var(--rule)}
+.pillars-table tr:first-child{border-top:1px solid var(--rule)}
+.pillars-table td{
+  padding:12px 0;font-size:13px;color:var(--mid);vertical-align:top;
+}
+.pillars-table td:first-child{
+  font-family:var(--ui);font-weight:700;color:var(--dark);
+  width:200px;padding-right:24px;
+}
+
+/* ── POLICY TIMELINE SVG ── */
+.policy-timeline-svg{width:100%;height:auto;display:block;margin-bottom:4px;overflow:visible}
+
+/* ── THREE COL TABLE (p.11) ── */
+.three-cols-info{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  padding:64px 80px;gap:0;background:var(--page-bg);
+}
+.info-col{padding-right:40px}
+.info-col:last-child{padding-right:0}
+.info-col-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--dark);margin-bottom:16px;
+}
+.info-col h4{
+  font-family:var(--ui);font-size:13px;font-weight:700;
+  margin-bottom:16px;color:var(--dark);
+}
+.info-col ul{list-style:none;padding:0}
+.info-col ul li{
+  font-size:13px;color:var(--mid);line-height:1.5;
+  padding:6px 0;border-bottom:1px solid var(--rule);
+}
+
+/* ── ORG CHART BUBBLE ── */
+.org-section{
+  display:grid;grid-template-columns:1fr 1fr;
+  padding:64px 80px;gap:56px;align-items:center;
+  background:var(--page-bg);
+}
+.org-chart-wrap{
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ── FINDINGS LIST ── */
+.findings-list{list-style:none;padding:0;margin-top:16px}
+.findings-list li{
+  padding:12px 0;border-bottom:1px solid var(--rule);
+  font-size:13px;color:var(--mid);
+}
+.findings-list li:first-child{border-top:1px solid var(--rule)}
+
+/* ── MINISTER PHOTO SECTION ── */
+.intro-section{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  padding:64px 80px;gap:48px;align-items:start;
+  background:var(--page-bg);
+}
+
+/* ── IRELAND MAP STAT ── */
+.ireland-stat{
+  display:flex;gap:32px;align-items:center;
+  background:#e5e0d0;border-radius:24px 24px 0 0;
+  padding:32px;margin-top:24px;
+}
+.ireland-map{width:131px;flex-shrink:0;}
+.ireland-map img{width:100%;display:block;}
+.ireland-stat-nums{flex:1;}
+.ireland-stat-row{padding:8px 0;}
+.ireland-stat-nums .sn{
+  font-family:var(--ui);font-size:32px;font-weight:600;line-height:32px;color:#857854;display:block;
+}
+.ireland-stat-nums .sl{
+  font-family:var(--ui);font-size:16px;font-weight:500;line-height:16px;color:#857854;display:block;margin-top:4px;
+}
+
+/* ── FULL PAGE QUOTE ── */
+.full-quote-section{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  padding:64px 80px;gap:48px;
+  background:var(--page-bg);
+}
+.full-quote-text{
+  font-family:var(--serif);font-size:22px;line-height:1.45;
+  color:var(--dark);font-weight:400;
+  grid-column:span 1;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--tan-bg);padding:80px 80px 48px;min-height:100vh;display:flex;flex-direction:column;
+}
+.footer-cta-line{
+  font-family:var(--serif);font-size:34px;color:var(--dark);line-height:1.2;margin-bottom:4px;
+}
+.footer-url{
+  font-family:var(--serif);font-size:44px;font-weight:700;
+  color:var(--dark);text-decoration:none;display:block;
+}
+.footer-url:hover{text-decoration:underline}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:24px;border-top:1px solid rgba(0,0,0,0.15);
+}
+.footer-logos{display:flex;align-items:center;gap:20px}
+.footer-logo-text{font-family:var(--ui);font-size:9px;color:var(--dark);line-height:1.4}
+.footer-divider{width:1px;height:32px;background:rgba(0,0,0,0.2)}
+.social-row{display:flex;gap:8px}
+.social-btn{
+  width:38px;height:38px;border-radius:50%;background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;color:#fff;flex-shrink:0;
+  transition:opacity 0.15s;
+}
+.social-btn:hover{opacity:0.75}
+.social-btn svg{width:17px;height:17px;fill:#c4b47a}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .two-col,.intro-section,.full-quote-section,.three-cols-info,.org-section{
+    grid-template-columns:1fr;padding:40px 32px;
+  }
+  .two-col.three-col,.two-col-left-wider{grid-template-columns:1fr}
+  .stats-row{margin:0 32px;grid-template-columns:1fr 1fr}
+  .impact-cards{padding:40px 32px;grid-template-columns:1fr;} .impact-heading{display:none} .impact-grid{grid-template-columns:repeat(6,1fr)}
+  .contents-section{grid-template-columns:1fr;padding:40px 32px}
+  footer{padding:56px 32px 36px}
+  .footer-cta-line{font-size:24px}
+  .footer-url{font-size:30px}
+  .photo-banner-text .script,.photo-banner-text .serif{font-size:60px;line-height:56px}
+  .photo-banner.hero .photo-banner-text .script{font-size:56px;line-height:1}
+  .photo-banner.hero .photo-banner-text .serif{font-size:72px;line-height:0.92}
+  .video-banner-text .script-title,.video-banner-text .serif-title{font-size:60px;line-height:56px}
+  .video-banner{height:100vh}
+  .photo-banner{height:100vh}
+  nav{padding:12px 24px}
+}
+@media(max-width:600px){
+  .two-col,.intro-section,.full-quote-section,.three-cols-info,.org-section{padding:28px 20px}
+  .impact-cards{padding:28px 20px;grid-template-columns:1fr} .impact-grid{grid-template-columns:1fr} .impact-grid .impact-card{grid-column:span 1!important}
+  .stats-row{margin:0 20px;grid-template-columns:1fr}
+  .stat-cell{border-right:none;border-bottom:1px solid var(--rule)}
+  footer{padding:40px 20px 28px}
+  nav{padding:10px 16px}
+  .video-banner{height:100vh}
+  .photo-banner{height:100vh}
+  .photo-banner-text .script,.photo-banner-text .serif{font-size:40px;line-height:38px}
+  .photo-banner.hero .photo-banner-text .script{font-size:40px;line-height:1}
+  .photo-banner.hero .photo-banner-text .serif{font-size:52px;line-height:0.92}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="site-nav">
+  <div class="nav-logos">
+    <img id="nav-logo" src="assets/ci-logo-white.png" alt="Clár Éire Ildánach – Creative Ireland Programme" class="nav-logo-img">
+  </div>
+  <button class="nav-menu">Menu</button>
+</nav>
+
+<!-- NAV OVERLAY -->
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button id="overlay-close">✕ Close</button>
+  <ul class="overlay-toc">
+    <li><a href="#introduction" onclick="document.getElementById('nav-overlay').classList.remove('open')">Introduction</a></li>
+    <li><a href="#what-is" onclick="document.getElementById('nav-overlay').classList.remove('open')">What is Creative Ireland?</a></li>
+    <li><a href="#creativity" onclick="document.getElementById('nav-overlay').classList.remove('open')">What do we mean by creativity?</a></li>
+    <li><a href="#operate" onclick="document.getElementById('nav-overlay').classList.remove('open')">How does Creative Ireland operate?</a></li>
+    <li><a href="#overall-impact" onclick="document.getElementById('nav-overlay').classList.remove('open')">Overall Impact</a></li>
+    <li><a href="#communities" onclick="document.getElementById('nav-overlay').classList.remove('open')">Creative Communities</a></li>
+    <li><a href="#youth" onclick="document.getElementById('nav-overlay').classList.remove('open')">Creative Youth</a></li>
+    <li><a href="#health" onclick="document.getElementById('nav-overlay').classList.remove('open')">Creative Health and Wellbeing</a></li>
+    <li><a href="#climate" onclick="document.getElementById('nav-overlay').classList.remove('open')">Creative Climate Action</a></li>
+    <li><a href="#industries" onclick="document.getElementById('nav-overlay').classList.remove('open')">Creative Industries</a></li>
+  </ul>
+</div>
+
+<!-- HERO PHOTO BANNER -->
+<div class="photo-banner hero">
+  <img src="assets/costume-performer.jpg" alt="Creative Ireland Impact Report 2025">
+  <div class="photo-banner-overlay"></div>
+  <div class="photo-banner-text">
+    <span class="script">Creative Ireland</span>
+    <span class="serif">Impact Report</span>
+    <span class="serif">2025</span>
+  </div>
+</div>
+
+<!-- CONTENTS -->
+<div class="contents-section" id="contents">
+  <h2 class="contents-label">Contents</h2>
+  <ul class="contents-list">
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#what-is">What is Creative Ireland?</a></li>
+    <li><a href="#creativity">What do we mean by creativity?</a></li>
+    <li><a href="#operate">How does Creative Ireland operate?</a></li>
+    <li><a href="#overall-impact">Overall Impact</a></li>
+    <li><a href="#communities">Creative Communities</a></li>
+    <li><a href="#youth">Creative Youth</a></li>
+    <li><a href="#health">Creative Health and Wellbeing</a></li>
+    <li><a href="#climate">Creative Climate Action and Sustainability</a></li>
+    <li><a href="#industries">Creative Industries</a></li>
+  </ul>
+</div>
+
+<!-- INTRODUCTION (3-col: label+name | body text | minister photo) -->
+<section class="intro-section page-bg" id="introduction">
+  <div class="intro-left">
+    <h2>Introduction</h2>
+    <div class="minister-name">Patrick O'Donovan T.D.<br>Minister for Culture, Communications and Sport</div>
+  </div>
+  <div class="right-col">
+    <p>I am very pleased to introduce this 2025 Impact Report, which reflects the real and growing impact of Creative Ireland in people's lives across the country. At its heart, this programme is about people, and about giving individuals and communities the opportunity to express themselves, connect with one another, and shape the places they live in through creativity.</p>
+    <p>In 2025 alone, €13 million was invested to support over 1,500 creative projects, with more than 17,000 creative practitioners involved. Behind those figures are thousands of individual stories of communities coming together, of young people finding their voice, and of creativity making a meaningful difference in everyday life.</p>
+    <p>Over the past year, I have seen first-hand the impact of this work in communities, in schools, and in initiatives that support wellbeing and inclusion.</p>
+    <p>It is especially encouraging to see so many creative practitioners and local partners coming together to deliver projects that are not only imaginative but deeply rooted in the needs and strengths of their communities.</p>
+    <p>Creative Ireland continues to show how creativity can play a practical role in public policy, helping us respond to challenges in new ways, strengthen connections between people, and build a more confident and inclusive society. That collaborative spirit, across government and at local level, is something I greatly value and will continue to support.</p>
+    <p>This report highlights just some of that work, and I hope it gives you a sense of the energy, ambition and care that underpins the programme right across the country.</p>
+    <p>Is mise<br>An t-Aire Pádraig Ó Donnabháin</p>
+  </div>
+  <div>
+    <div class="photo-block">
+      <img src="assets/minister-portrait.jpg" alt="Patrick O'Donovan T.D., Minister for Culture, Communications and Sport" style="aspect-ratio:3/4;">
+      <p class="photo-caption">Patrick O'Donovan T.D.<br>Minister for Culture, Communications and Sport</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS CREATIVE IRELAND — Photo Banner -->
+<div class="photo-banner" id="what-is">
+  <img src="assets/living-legends.jpg" alt="Living Legends, Narrative4">
+  <div class="photo-banner-overlay"></div>
+  <div class="photo-banner-caption">Living Legends, Narrative4</div>
+  <div class="photo-banner-text">
+    <span class="serif">What is<br>Creative Ireland?</span>
+  </div>
+</div>
+
+<!-- WHAT IS CREATIVE IRELAND — Content -->
+<section class="two-col page-bg">
+  <div>
+    <h2>What is Creative Ireland?</h2>
+    <p class="big-pull italic">The mission of Creative Ireland is to find innovative ways to empower us to tap into and develop our innate creative ability through participation in creative and cultural activity.</p>
+  </div>
+  <div class="right-col" style="column-count:2;column-gap:32px;">
+    <p>Creative Ireland is a whole of government culture and wellbeing programme, led by the Department of Culture, Communications and Sport (DCCS). The programme aims to inspire and transform people, places and communities through participation in creative and cultural activity, with the vision that every person in Ireland has access to creative opportunities to realise their creative potential. First established in 2017, the programme is now in its second phase, which is due to complete at the end of 2027.</p>
+    <p>The mission of Creative Ireland is to find innovative ways to empower us to tap into and develop our innate creative ability through participation in creative and cultural activity.</p>
+    <p>By focusing on participation as the key to unlocking creativity and by ensuring projects are, as far as possible, participant led, Creative Ireland acts as a catalyst for a wide and diverse range of activity on the ground across Ireland. This work encompasses visual arts, design, music, dance, craft, literature, multidisciplinary and public art, theatre, heritage, traditional arts, creative writing, film, circus and street art, storytelling, Irish language, digital technologies, AR/VR, animation and architecture. It involves people at every stage of life, with an emphasis on engaging seldom heard and marginalised groups.</p>
+    <p>A significant part of Creative Ireland's work is targeted investment through grant funding – providing €13 million to support over 1,500 projects in 2025. The programme also builds capacity among partner organisations through training and networking, undertakes research and evaluation, and works to embed creativity in government policy on cross cutting issues such as, social inclusion, education, health, wellbeing, climate action and the future economy.</p>
+    <p>This Impact Report highlights key achievements and impact delivered throughout 2025.</p>
+  </div>
+</section>
+
+<!-- WHAT DO WE MEAN BY CREATIVITY — Photo Banner -->
+<div class="photo-banner" id="creativity">
+  <img src="assets/bog-bothy.jpg" alt="Bog Bothy, Co. Offaly" onerror="this.style.display='none'">
+  <img src="assets/time-machine.jpg" alt="Bog Bothy, Co. Offaly" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+  <div class="photo-banner-overlay"></div>
+  <div class="photo-banner-caption">Bog Bothy, Co. Offaly</div>
+  <div class="photo-banner-text">
+    <span class="serif">What do we mean<br>by creativity?</span>
+  </div>
+</div>
+
+<!-- WHAT DO WE MEAN — Content (2-col: big pull | body + photo stacked) -->
+<section class="two-col page-bg" id="creativity-content" style="grid-template-columns:1fr 1fr;padding:64px 80px;">
+  <div>
+    <h2>What do we mean by creativity?</h2>
+    <p class="big-pull italic">Creativity is about using our imaginations to express ourselves, find purpose and identity, take risks, strengthen resilience, make new beginnings and even spark a sense of wonder, fun and joy, enabling us to add meaningful value to our lives and communities.</p>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <p>Creativity is an innate human ability, and to be creative is a fundamental part of being human. It is a combination of natural human talent and learned skill, that gives each of us the ability to express ourselves through the discovery and expression of new and original ideas and the design of innovative solutions to problems. In this way having opportunities to be creative is closely linked to how we develop and realise our potential. At its heart, creativity is about using our imaginations to express ourselves, find purpose and identity, take risks, strengthen resilience, make new beginnings and even spark a sense of wonder, fun and joy, enabling us to add meaningful value to our lives and communities.</p>
+      <p>Creativity is now widely recognised as a <strong><u>critical transversal skill</u></strong>. There is <strong><u>clear evidence</u></strong> that participation in creative and cultural activity is a key indicator for improved wellbeing, better social connection and better health outcomes. It is also the essential prerequisite for innovation across our economy and public sector, as outlined in the <strong><u>Principles and Action Plan for Designing Better Public Services</u></strong>.</p>
+      <p>At European level, the <strong><u>European Commission's Culture Compass for Europe</u></strong> similarly positions culture as key driver of innovation and societal development.</p>
+    </div>
+    <div class="photo-block">
+      <img src="assets/traces-dance.jpg" alt="Traces Dance Ensemble, Glór Dance Project">
+      <p class="photo-caption">Traces Dance Ensemble, Glór Dance Project</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW DOES CREATIVE IRELAND OPERATE — Photo Banner -->
+<div class="photo-banner" id="operate">
+  <img src="assets/youth-theatre.jpg" alt="Youth Theatre Ireland performance">
+  <div class="photo-banner-overlay" style="background:rgba(0,0,0,0.4)"></div>
+  <div class="photo-banner-caption">Youth Theatre Ireland performance</div>
+  <div class="photo-banner-text">
+    <span class="serif">How does Creative<br>Ireland operate?</span>
+  </div>
+</div>
+
+<!-- HOW DOES CI OPERATE — Content (2-col: pillars | body + photo stacked) -->
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px 64px 0;row-gap:0;" id="operate-content">
+  <h2 style="grid-column:1/-1;padding-left:80px;margin-bottom:28px;">How does Creative Ireland operate?</h2>
+  <div class="pillars-panel">
+    <p style="font-family:var(--ui);font-size:11.5px;font-weight:700;margin-bottom:12px;">The five strategic pillars of Creative Ireland</p>
+    <table class="pillars-table">
+      <tr>
+        <td>Creative Communities</td>
+        <td style="font-size:13px;color:var(--mid)">Supporting locally led culture and creativity strategies through local authorities.</td>
+      </tr>
+      <tr>
+        <td>Creative Youth</td>
+        <td style="font-size:13px;color:var(--mid)">Embedding creativity into the heart of children and young peoples' lives.</td>
+      </tr>
+      <tr>
+        <td>Creative Health and Wellbeing</td>
+        <td style="font-size:13px;color:var(--mid)">Advancing creative approaches to health and wellbeing.</td>
+      </tr>
+      <tr>
+        <td>Creative Climate Action and Sustainability</td>
+        <td style="font-size:13px;color:var(--mid)">Mobilising creativity to address climate and sustainability challenges.</td>
+      </tr>
+      <tr>
+        <td>Creative Industries</td>
+        <td style="font-size:13px;color:var(--mid)">Strengthening Ireland's creative industries.</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <p>The objectives of the pillars are set out in a number of strategy documents including <strong><u>The Creative Youth Plan</u></strong> 2023–2027 - an all-of-government strategy aimed at providing children and young people with increased opportunities for creative engagement. The work of the Health and Wellbeing pillar is focused by the <strong><u>Strategic Action Plan for Arts and Health</u></strong>, while Creative Industries leads on the implementation of the <strong><u>Digital Creative Industries Roadmap</u></strong>. At local level, local authority Culture and Creativity Strategies share common priorities around social cohesion, wellbeing and investment in communities.</p>
+    </div>
+    <div class="photo-block">
+      <img src="assets/bean-festival.jpg" alt="Brilliant Ballybunion Bean Festival">
+      <p class="photo-caption">Brilliant Ballybunion Bean Festival</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATIVE DELIVERY — pull quote + body + photo stacked -->
+<section class="two-col" style="grid-template-columns:1fr 1fr;padding:64px 80px;background:#AD9F71;">
+  <div>
+    <p class="big-pull">Through a collaborative delivery model, working in partnership with government departments, local authorities, state agencies, cultural organisations, and community partners to fund and deliver projects on the ground.</p>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <h3 style="color:#fff;">A Catalyst for Creativity</h3>
+      <p>Creative Ireland operates through a collaborative delivery model, working in partnership with government departments, local authorities, state agencies, cultural organisations, and community partners to fund and deliver projects on the ground. Since the second phase of Creative Ireland began in 2023, Creative Ireland has invested €39.9 million to advance its ambition of inspiring and transforming people, places and communities through creative and cultural participation. In 2025, €13 million was invested in 1,548 creative projects.</p>
+      <h3 style="color:#fff;">Creative Ireland Shared Island initiative</h3>
+      <p>The Government's Shared Island initiative aims to harness the full potential of the Good Friday Agreement to enhance cooperation, connection and mutual understanding on the island and engage with all communities and traditions to build consensus around a shared future.</p>
+      <p>Since 2023, Creative Ireland's Shared Island initiative has invested <strong><u>€6 million across the island of Ireland</u></strong>, with the goal of using creativity to foster person-to-person and community-to-community relationships which can contribute to a new vision of a shared island.</p>
+      <p>In November 2025, Creative Ireland celebrated the work of 47 Shared Island projects, at a conference in Croke Park, Dublin. Attended by Taoiseach Micheál Martin, Minister for Culture, Communications and Sport, Patrick O'Donovan and over 350 invited guests, the conference featured musical performances, panel discussions and exhibitions exploring experiences and stories from the initiative.</p>
+    </div>
+    <div class="photo-block">
+      <img src="assets/weaving-worlds.jpg" alt="Weaving Worlds Together, Kerry County Council, Shared Island conference" style="aspect-ratio:3/4;">
+      <p class="photo-caption">Weaving Worlds Together, Kerry County Council</p>
+    </div>
+  </div>
+</section>
+
+<!-- EMBEDDING — full width, stacked vertically -->
+<section class="page-bg" style="padding:64px 80px;">
+  <div class="right-col" style="max-width:700px;margin-bottom:40px;">
+    <h3>Embedding creativity across government policy</h3>
+    <p>As a cross-government initiative, Creative Ireland acts as a catalyst for system change by strategically integrating culture and creativity into the policy frameworks of our partner government departments, local authorities and state agencies. This approach aligns with and supports key national strategies, including the Healthy Ireland Framework, Young Ireland, the Child Poverty and Well-being Programme, the National Well-being Framework and the National Climate Action Plan, enabling innovative responses to complex social, economic and environmental challenges.</p>
+    <p>A core focus in 2025 was embedding creativity within policy frameworks at national and local level.</p>
+    <p>Through local authority Culture and Creativity Strategies, Creative Ireland continued to strengthen its key partnership with the local government and the County and City Management Association. Creative Ireland funded projects continue to align with and enable Development Plans and Local Economic and Community Plans, including Age Friendly Ireland, Healthy Communities, Community Safety Partnerships and Town Centre First.</p>
+  </div>
+  <!-- Timeline: dots in same 3-col grid so they align exactly with column starts -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;position:relative;margin-bottom:20px;">
+    <div style="position:absolute;top:6px;left:6px;right:calc(33.333% - 6px);height:1px;background:var(--dark);"></div>
+    <div style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;"></div>
+    <div style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;"></div>
+    <div style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;">
+    <div style="padding-right:32px;">
+      <h4 style="font-family:var(--ui);font-size:14px;font-weight:700;margin-bottom:16px;">Policy areas</h4>
+      <ul style="list-style:none;padding:0;">
+        <li style="font-size:14px;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--rule)">Children and young people</li>
+        <li style="font-size:14px;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--rule)">Health and wellbeing</li>
+        <li style="font-size:14px;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--rule)">Local government and communities</li>
+        <li style="font-size:14px;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--rule)">Climate action</li>
+        <li style="font-size:14px;color:var(--mid);padding:8px 0">Creative industries</li>
+      </ul>
+    </div>
+    <div style="padding-right:32px;border-left:1px solid var(--rule);padding-left:24px;">
+      <h4 style="font-family:var(--ui);font-size:14px;font-weight:700;margin-bottom:16px;">Government Departments</h4>
+      <ul style="list-style:none;padding:0;">
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of the Taoiseach</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Children, Disability and Equality</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Climate, Energy and the Environment</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Education and Youth</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Enterprise, Tourism and Employment</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Further and Higher Education, Research, Innovation and Science</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Health</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of Housing, Local Government and Heritage</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0">Department of Culture, Communications and Sport</li>
+      </ul>
+    </div>
+    <div style="border-left:1px solid var(--rule);padding-left:24px;">
+      <h4 style="font-family:var(--ui);font-size:14px;font-weight:700;margin-bottom:16px;">State Agencies and Partners</h4>
+      <ul style="list-style:none;padding:0;">
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Skillnet Ireland</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Screen Ireland</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Údarás na Gaeltachta</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Enterprise Ireland</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Design &amp; Crafts Council Ireland</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">HSE</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">The Arts Council</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Healthy Ireland</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">City and County Management Association</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Local authorities</li>
+        <li style="font-size:14px;color:var(--mid);padding:6px 0">Coimisiún na Meán</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH + WEAVING WORLDS photo -->
+<section class="two-col page-bg" style="padding:64px 80px;">
+  <div class="right-col">
+    <h3>Research and evaluation</h3>
+    <p>In 2025, Creative Ireland supported targeted research, monitoring and evaluation across youth, climate action, health and ageing, and communities, including in a Shared Island context. This work strengthens accountability, informs future investment decisions, supports consistent evaluation approaches across partners, and contributes to wider policy understanding of the role creativity plays in addressing shared societal challenges.</p>
+    <p>A 2025 interim report presents the initial findings from a programme-level evaluation of the Creative Ireland Shared Island initiative. This evaluation covers 22 projects and offers early insights into the impact of these collaborative creative initiatives. The final report in 2026 will include detailed findings when all projects conclude and evaluations are complete.</p>
+    <p>Other evaluation work includes the conclusion of an in-depth five-year evaluation of the impact of Creative Climate Action funding by University College Cork; the launch of a new two-year research partnership with the ESRI for Creative Youth which began in 2025; and the renewal of research with The Irish Longitudinal Study on Ageing (TILDA) around cultural participation and aging for a further two years.</p>
+    <h3>Capacity building</h3>
+    <p>Creative Ireland operates through a collaborative delivery model, working in partnership with government departments, local authorities, state agencies, cultural organisations, and community partners to fund and deliver projects on the ground. Critical to the Creative Ireland model is building capacity among communities and practitioners to ensure funding is used effectively and sustainably. In 2025 Creative Ireland delivered 26 networking and capacity building events, to strengthen capability across its strategic pillars.</p>
+  </div>
+  <div>
+    <div class="photo-block">
+      <img src="assets/taoiseach-minister.jpg" alt="Minister Patrick O'Donovan and Taoiseach Micheál Martin" style="aspect-ratio:4/3;">
+      <p class="photo-caption">Minister Patrick O'Donovan and Taoiseach Micheál Martin, Shared Island conference</p>
+    </div>
+    <div class="photo-block" style="margin-top:16px;">
+      <img src="assets/irish-refugee-council.jpg" alt="Irish Refugee Council, Creative Youth Nurture Fund conference" style="aspect-ratio:4/3;">
+      <p class="photo-caption">Irish Refugee Council, Creative Youth Nurture Fund conference</p>
+    </div>
+  </div>
+</section>
+
+<!-- OVERALL IMPACT — Video Banner (static fallback) -->
+<div class="video-banner" id="overall-impact" style="background-image:url('assets/costume-performer.jpg');background-size:cover;background-position:center;">
+  <div class="video-banner-overlay"></div>
+  <a href="https://www.youtube.com/watch?v=KFFv5pXAthQ" class="yt-play-btn" target="_blank" rel="noopener" aria-label="Watch Overall Impact on YouTube">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.35)"/><polygon points="10,8 17,12 10,16" fill="#fff"/></svg>
+    Watch on YouTube
+  </a>
+  <div class="video-banner-text">
+    <span class="serif-title">Overall<br>Impact</span>
+  </div>
+</div>
+
+<!-- OVERALL IMPACT CARDS -->
+<div class="impact-cards">
+  <div class="impact-heading">
+    <h2>Overall Impact</h2>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card" style="grid-column:span 2">
+      <div class="impact-num">2,174</div>
+      <span class="impact-label">creative practitioners</span>
+      <p class="impact-desc">Cruinniú na nÓg, a key commitment in the Creative Youth Plan, delivered over 1,100 events across Ireland, including on a Shared Island basis, engaging 2,174 creative practitioners.</p>
+    </div>
+    <div class="impact-card" style="grid-column:span 2">
+      <div class="impact-num">1,584</div>
+      <span class="impact-label">creative projects</span>
+      <p class="impact-desc">1,584 creative projects supported through programme funding.</p>
+    </div>
+    <div class="impact-card" style="grid-column:span 2">
+      <div class="impact-num">€13m</div>
+      <span class="impact-label">invested</span>
+      <p class="impact-desc">€13 million invested in 2025 to advance creative activity and participation nationwide.</p>
+    </div>
+    <div class="impact-card" style="grid-column:span 3">
+      <div class="impact-num">5</div>
+      <span class="impact-label">pillars</span>
+      <p class="impact-desc">Investment distributed across the programme's five pillars: Communities, Youth, Health and Wellbeing, Climate Action and Sustainability and Creative Industries.</p>
+    </div>
+    <div class="impact-card" style="grid-column:span 3">
+      <div class="impact-num">26</div>
+      <span class="impact-label">events</span>
+      <p class="impact-desc">26 networking and capacity building events delivered across five strategic pillars including:
+        <ul>
+          <li>Shared Island conference, Creativity Connecting People, over 350 participants including Taoiseach and Minister for Culture, Communications and Sport</li>
+          <li>Two Health and Wellbeing network gatherings to strengthen collaboration and share best practice between Healthy Ireland and Creative Ireland</li>
+          <li>Nurture Fund 2023–2025 celebration showcase event in the National Concert Hall</li>
+          <li>Communities network gathering bringing together local authorities, enabling shared learning and improved outcomes through creative engagement</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- CREATIVE COMMUNITIES — Video Banner -->
+<div class="video-banner" id="communities">
+  <video autoplay muted loop playsinline>
+    <source src="assets/Videos/CreativeCommunities.mp4" type="video/mp4">
+  </video>
+  <div class="video-banner-overlay"></div>
+  <div class="video-banner-text">
+    <span class="script-title">Creative<br>Communities</span>
+  </div>
+</div>
+
+<!-- CREATIVE COMMUNITIES — Content (2-col: left info | right body + photo) -->
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;" id="communities-content">
+  <div>
+    <span class="section-script-title">Creative Communities</span>
+    <div class="partners-box">Creative Ireland in partnership with the Department of Housing, Local Government and Heritage, and the City and County Management Association</div>
+  </div>
+  <div class="right-col">
+    <p>Creative Communities is a policy and implementation partnership between DCCS and DHLGH. It's a five-year funding commitment with local authorities who have significant autonomy in how investment is used locally. This flexibility allows for imaginative, place-based and long-term approaches to creative development.</p>
+    <p>Creative Communities provides annual funding to local authorities to place communities at the centre of how creative projects are designed and delivered, responding to issues that matter to local communities. An in-depth evaluation of Creative Communities due to be published in Q2 2026 is showing that 87% of projects take place in areas with low access to creative and cultural activity, providing opportunities and a voice for people and communities who might otherwise be excluded.</p>
+    <p>Capacity in local authorities to facilitate community participation in creative and cultural activity has been significantly strengthened through the appointment of Creative Communities Engagement Officers (CCEOs). These roles are co-funded by Creative Ireland with local authorities, reflecting the value placed by local authorities on community-based engagement. Creative Communities Engagement Officers ensure local needs are reflected in programme design and delivery, while supporting effective collaboration across multidisciplinary Culture and Creativity Teams.</p>
+    <p>Implementation is supported by a diverse Culture and Creativity Team established in each local authority, led by a Director of Service and including stakeholders from arts, heritage, libraries, community development, climate, biodiversity, tourism, housing, Irish Language, Healthy Ireland, Age Friendly and Local Enterprise Offices. These teams provide an unprecedented forum for cross-sectoral collaboration and are central to how Creative Communities responds to local needs and interests.</p>
+    <p>An evaluation of the Creative Communities will be published in Q2 2026. Headline findings include:</p>
+    <ul class="findings-list">
+      <li>Over 40% of projects are delivering on City and County Development Plans</li>
+      <li>36% on Great Places to Live, Work and Invest</li>
+      <li>24% on Resilient Communities</li>
+      <li>50% of all projects are targeting seldom-heard communities</li>
+    </ul>
+    <h3 style="margin-top:24px;">Creative Communities on a Shared Island</h3>
+    <p>In 2025, the first Creative Communities on a Shared Island initiative (2023-2025), supported by a €1.5 million investment, concluded, with a series of large-scale projects delivered through local authorities, cultural and creative organisations, and community groups across the island. These included Birds Of A Feather and Dance Connects in Rural Borders alongside locally rooted initiatives such as The Ties That Bind, Farm Walks, Building Shared Creative Communities and Sharing Songs – Unforgettable Voices.</p>
+    <p><strong><u>Evaluations</u></strong> show that these projects fostered lasting creative and social connections, with participants highlighting the importance of safe, accessible and peaceful spaces in enabling meaningful engagement, shared understanding and ongoing collaboration.</p>
+    <div class="photo-block" style="margin-top:28px;">
+      <img src="assets/roscommon-anthology.jpg" alt="Roscommon Anthology, Roscommon County Council" style="aspect-ratio:4/3;">
+      <p class="photo-caption">Roscommon Anthology, Roscommon County Council</p>
+    </div>
+  </div>
+</section>
+
+<!-- CC ORG CHART — on #AD9F71 background -->
+<section style="background:#AD9F71;padding:64px 80px;display:grid;grid-template-columns:1fr 2fr;gap:56px;align-items:start;">
+  <p class="big-pull" style="font-size:28px;line-height:1.35;padding-top:40px;">In 2025 funding of €7.8 million supported 1,495 projects, and an additional 1,184 Cruinniú na nÓg events, held on Saturday 7 June. This investment supported 17,424 creative practitioners across the island of Ireland.</p>
+  <div class="org-chart-wrap">
+    <svg viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;height:auto;" aria-label="Culture and Creativity Teams org chart">
+      <defs>
+        <style>
+          .rl{font-family:'Founders Grotesk',sans-serif;font-size:14px;fill:#1a1a18;text-anchor:middle;dominant-baseline:middle}
+          .rh{font-family:'Founders Grotesk',sans-serif;font-size:14px;font-weight:700;fill:#1a1a18;text-anchor:middle;dominant-baseline:middle}
+        </style>
+      </defs>
+
+      <!-- Single concentric background circle — semi-transparent white -->
+      <circle cx="480" cy="470" r="330" fill="rgba(255,255,255,0.10)"/>
+
+      <!-- Culture & Creativity Teams — centre circle (corrected position) -->
+      <circle cx="480" cy="470" r="84" fill="rgba(255,255,255,0.35)"/>
+      <text x="480" y="463" class="rh">Culture &amp;</text>
+      <text x="480" y="480" class="rh">Creativity Teams</text>
+
+      <!-- Top-level nodes — true circles, semi-transparent white, no connector lines -->
+      <!-- Creative Ireland Coordinator -->
+      <circle cx="175" cy="85" r="64" fill="rgba(255,255,255,0.28)"/>
+      <text x="175" y="78" class="rh">Creative Ireland</text>
+      <text x="175" y="95" class="rh">Coordinator</text>
+
+      <!-- Director of Services -->
+      <circle cx="450" cy="72" r="60" fill="rgba(255,255,255,0.22)"/>
+      <text x="450" y="65" class="rh">Director</text>
+      <text x="450" y="82" class="rh">of Services</text>
+
+      <!-- Creative Communities Engagement Officer -->
+      <circle cx="738" cy="85" r="68" fill="rgba(255,255,255,0.28)"/>
+      <text x="738" y="71" class="rh">Creative Communities</text>
+      <text x="738" y="88" class="rh">Engagement</text>
+      <text x="738" y="105" class="rh">Officer</text>
+
+      <!-- Role labels: dot + text — upper band -->
+      <circle cx="275" cy="220" r="4" fill="#1a1a18"/>
+      <text x="275" y="238" class="rl">Tourism</text>
+      <text x="275" y="254" class="rl">Officers</text>
+
+      <circle cx="455" cy="207" r="4" fill="#1a1a18"/>
+      <text x="455" y="225" class="rl">Integration</text>
+      <text x="455" y="241" class="rl">Officers</text>
+
+      <circle cx="685" cy="220" r="4" fill="#1a1a18"/>
+      <text x="685" y="238" class="rl">Arts Officers</text>
+
+      <!-- Middle-upper band -->
+      <circle cx="228" cy="320" r="4" fill="#1a1a18"/>
+      <text x="228" y="338" class="rl">Museum Gallery</text>
+      <text x="228" y="354" class="rl">Curators</text>
+
+      <circle cx="385" cy="302" r="4" fill="#1a1a18"/>
+      <text x="385" y="320" class="rl">Planners/Forward</text>
+      <text x="385" y="336" class="rl">Planners</text>
+
+      <circle cx="590" cy="302" r="4" fill="#1a1a18"/>
+      <text x="590" y="320" class="rl">Local Enterprise</text>
+
+      <circle cx="738" cy="320" r="4" fill="#1a1a18"/>
+      <text x="738" y="338" class="rl">Irish Language</text>
+      <text x="738" y="354" class="rl">Officers</text>
+
+      <circle cx="800" cy="432" r="4" fill="#1a1a18"/>
+      <text x="800" y="450" class="rl">NTE Officers</text>
+
+      <!-- Middle band -->
+      <circle cx="215" cy="430" r="4" fill="#1a1a18"/>
+      <text x="215" y="448" class="rl">LCDC Chief</text>
+      <text x="215" y="464" class="rl">Officers</text>
+
+      <circle cx="790" cy="532" r="4" fill="#1a1a18"/>
+      <text x="790" y="550" class="rl">Biodiversity</text>
+      <text x="790" y="566" class="rl">Officer</text>
+
+      <circle cx="352" cy="527" r="4" fill="#1a1a18"/>
+      <text x="352" y="545" class="rl">Architects</text>
+
+      <circle cx="680" cy="512" r="4" fill="#1a1a18"/>
+      <text x="680" y="530" class="rl">Conservation</text>
+      <text x="680" y="546" class="rl">Architect</text>
+
+      <!-- Lower band -->
+      <circle cx="190" cy="537" r="4" fill="#1a1a18"/>
+      <text x="190" y="555" class="rl">Economic</text>
+      <text x="190" y="571" class="rl">Development</text>
+      <text x="190" y="587" class="rl">Officers</text>
+
+      <circle cx="740" cy="600" r="4" fill="#1a1a18"/>
+      <text x="740" y="618" class="rl">Healthy Ireland</text>
+
+      <circle cx="258" cy="627" r="4" fill="#1a1a18"/>
+      <text x="258" y="645" class="rl">Archaeologists</text>
+
+      <circle cx="388" cy="632" r="4" fill="#1a1a18"/>
+      <text x="388" y="650" class="rl">Age Friendly</text>
+      <text x="388" y="666" class="rl">Officers</text>
+
+      <circle cx="480" cy="662" r="4" fill="#1a1a18"/>
+      <text x="480" y="680" class="rl">County Librarians</text>
+
+      <circle cx="605" cy="632" r="4" fill="#1a1a18"/>
+      <text x="605" y="650" class="rl">Heritage Officers</text>
+
+      <circle cx="740" cy="662" r="4" fill="#1a1a18"/>
+      <text x="740" y="680" class="rl">Venue Managers</text>
+
+      <circle cx="330" cy="702" r="4" fill="#1a1a18"/>
+      <text x="330" y="720" class="rl">Archivists</text>
+
+      <circle cx="430" cy="720" r="4" fill="#1a1a18"/>
+      <text x="430" y="738" class="rl">Comms &amp; Marketing</text>
+
+      <circle cx="555" cy="702" r="4" fill="#1a1a18"/>
+      <text x="555" y="720" class="rl">Communities</text>
+      <text x="555" y="736" class="rl">Safety Partnerships</text>
+
+      <circle cx="672" cy="720" r="4" fill="#1a1a18"/>
+      <text x="672" y="738" class="rl">Climate Action</text>
+      <text x="672" y="754" class="rl">Officers</text>
+    </svg>
+  </div>
+</section>
+
+<!-- CREATIVE YOUTH — Video Banner -->
+<div class="video-banner" id="youth">
+  <video autoplay muted loop playsinline>
+    <source src="assets/Videos/CreativeYOuth.mp4" type="video/mp4">
+  </video>
+  <div class="video-banner-overlay"></div>
+  <div class="video-banner-text">
+    <span class="script-title">Creative<br>Youth</span>
+  </div>
+</div>
+
+<!-- CREATIVE YOUTH — Content (2-col: info left | body + photos stacked right) -->
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;" id="youth-content">
+  <div>
+    <span class="section-script-title">Creative Youth</span>
+    <div class="partners-box">Creative Ireland in partnership with the Department of Education and Youth, the Department of Children Disability and Equality, the Department of Further and Higher Education, Research, Innovation and Science and The Arts Council.</div>
+    <p class="big-pull">In 2025, DCCS funding of €2.4 million (including Shared Island) supported 30 Creative Youth initiatives, including eight Local Creative Youth Partnerships, nine Nurture Fund projects and six Shared Island projects.</p>
+    <div class="ireland-stat">
+      <div class="ireland-map">
+        <img src="assets/Links/Ireland_vector.svg" alt="Map of Ireland">
+      </div>
+      <div class="ireland-stat-nums">
+        <div class="ireland-stat-row">
+          <span class="sn">839</span>
+          <span class="sl">Number of schools / youth reach centres</span>
+        </div>
+        <div class="ireland-stat-row" style="border-top:1px solid #857854;border-bottom:1px solid #857854">
+          <span class="sn">954</span>
+          <span class="sl">Number of initiatives</span>
+        </div>
+        <div class="ireland-stat-row" style="border-bottom:1px solid #857854">
+          <span class="sn">230,991</span>
+          <span class="sl">Number of pupils</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <h3>The Creative Youth Plan 2023–2027</h3>
+      <p><strong>The Creative Youth Plan 2023–2027</strong> is delivered through a collaborative framework that places creativity at the heart of children and young people's lives, nurturing this essential skill throughout their journey to adulthood.</p>
+      <p>2025 was a year of reflection on progress achieved to date under the Plan. This was presented to government in May, followed by the publication of an <strong><u>Interim Report 2023–2025</u></strong> in July. This highlighted the success of the Plan since 2023 and outlined the strategic focus for its remaining two years. A searchable map of all school projects to date was launched by the Department of Education and Youth and can be <strong><u>viewed here</u></strong>.</p>
+      <h3>Connecting with children and young people</h3>
+      <p>Creative Youth continued to expand its reach to children and young people who are often seldom heard. In partnership with DCDE and DEY an eighth <strong><u>Local Creative Youth Partnership</u></strong> was established within the Tipperary Education and Training Board, expanding both inclusive and targeted opportunities for creative participation in community settings.</p>
+      <p>The <strong><u>Creative Youth Nurture Fund</u></strong> pilot concluded in 2025, culminating in a celebratory showcase event in May, followed by the publication of all nine supported projects. These diverse projects engaged young people from the Travelling Community, from the refugee community and those seeking protection, young people with disabilities, in youth detention, in or transitioning from the care system, and those attending youth mental health services. Evaluation of the pilot demonstrated strong positive outcomes, including increased self-confidence and self-expression, the development of transferable skills, enhanced social connection and belonging, and positive shifts in attitudes and perceptions.</p>
+    </div>
+    <div class="stacked-images">
+      <div class="photo-block">
+        <img src="assets/cruinniu-art-island.jpg" alt="Cruinniú na nÓg, This is Art! Island" style="aspect-ratio:4/3;">
+        <p class="photo-caption">Cruinniú na nÓg, This is Art! Island</p>
+      </div>
+      <div class="photo-block">
+        <img src="assets/creative-careers.jpg" alt="Creative Careers at the Higher Options and WorldSkills event, RDS" style="aspect-ratio:4/3;">
+        <p class="photo-caption">Creative Careers at the Higher Options and WorldSkills event, RDS</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREATIVE YOUTH — Shared Island content -->
+<section class="page-bg" style="padding:64px 80px;">
+  <div class="right-col" style="max-width:700px;">
+    <h3>Creative Youth on a Shared Island</h3>
+    <p>Through the Shared Island initiative, €900,000 supported six <strong><u>Creative Youth on a Shared Island</u></strong> projects during 2024–2025. The projects enabled meaningful interactions between young people across the Island through song writing, storytelling, theatre, parade, creative writing and dance. Representatives from all six projects participated in our Shared Island Conference in November 2025.</p>
+    <p>In 2025, Creative Youth also commenced new cross-government initiatives to engage young people. The <strong>Creative Careers</strong> pilot was officially launched at the Higher Options and World Skills events in the RDS in September, designed to raise awareness among 16–18 year-olds of the range of career possibilities in the cultural and creative industries. Coordinated by Creative Ireland, Creative Careers brought together agencies under the aegis of the Department of Culture including The Arts Council, Screen Ireland and Coimisiún na Meán.</p>
+    <p>In addition, Creative Youth, led by DFHERIS and key stakeholders in further and higher education is developing a Creative Campus concept within tertiary education settings. The initiative aims to "identify aims, principles and features of a creative campus, in collaboration with further and higher education institutions, the creative sectors and communities". Engagement with these stakeholders was supported by a comprehensive survey and consultation event hosted in TU Dublin in November 2025.</p>
+    <p>A key objective for the next phase of delivery for Creative Youth is the continued strengthening of the evidence base through research. In November, Creative Ireland, in partnership with DCDE and DEY, and the ESRI, established a joint programme of research on children and young people's engagement in creative and cultural activities. This research programme will run from 2025–2027.</p>
+  </div>
+</section>
+
+<!-- CREATIVE HEALTH — Video Banner -->
+<div class="video-banner" id="health">
+  <video autoplay muted loop playsinline>
+    <source src="assets/Videos/Creative%20Health%20%26%20wellbeing.mp4" type="video/mp4">
+  </video>
+  <div class="video-banner-overlay"></div>
+  <div class="video-banner-text">
+    <span class="script-title">Creative Health<br>and Wellbeing</span>
+  </div>
+</div>
+
+<!-- CREATIVE HEALTH — Content (2-col: info left | body + photo stacked right) -->
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;" id="health-content">
+  <div>
+    <span class="section-script-title">Creative Health and Wellbeing</span>
+    <div class="partners-box">Creative Ireland in partnership with the Department of Health, the HSE, The Arts Council and Healthy Ireland</div>
+    <p class="big-pull">In 2025, €1.35 million in funding was invested in Creative Health and Wellbeing.</p>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <h3>Creative Health and Wellbeing – a policy partnership</h3>
+      <p>There is growing national and international evidence that participation in creative and cultural activity has a positive impact on wellbeing, a field of practice known as Arts and Health. The Health and Wellbeing pillar of Creative Ireland works in partnership with the DoH, the HSE and the Arts Council, to realise the vision set out in our first <strong><u>Strategic Action Plan</u></strong> for Creative Arts and Health that:</p>
+      <p>'People living in Ireland have access to creative and cultural activity as part of a holistic health journey throughout the life course, supporting better health and wellbeing outcomes and enriching the creative and artistic landscape'</p>
+      <p>The plan, published in June 2025, has driven investment of €1.55 million of which €1.35m was funded by Creative Ireland who also act as the secretariat for the National Creative Arts and Health Working group.</p>
+    </div>
+    <div class="photo-block">
+      <img src="assets/take5-drawing.jpg" alt="Take 5, Donegal County Council">
+      <p class="photo-caption">Take 5, Donegal County Council</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREATIVE HEALTH — Outcomes (did i ever tell you + policy points) -->
+<section class="two-col page-bg" style="padding:64px 80px;">
+  <div>
+    <div class="photo-block tall">
+      <img src="assets/did-i-ever-tell-you.jpg" alt="Did I Ever Tell You. Kildare, Offaly and Westmeath County Councils">
+      <p class="photo-caption">Did I Ever Tell You. Kildare, Offaly and Westmeath County Councils</p>
+    </div>
+  </div>
+  <div class="right-col">
+    <p><strong>Key outputs for 2025 under this plan are:</strong></p>
+    <h3>1. Policy</h3>
+    <p>a. A first <strong><u>Strategic Action Plan for Creative Arts &amp; Health</u></strong> was published in 2025 with work already underway on the next multi-annual plan.<br>
+    b. Ireland worked closely with other Member States, the European Commission and the World Health organisation on the EU report <strong><u>Culture &amp; Health – Time to Act</u></strong>.</p>
+    <h3>2. Research</h3>
+    <p>Creative Ireland provided funding of €111,000 to the Trinity Longitudinal Study on Ageing (TILDA) to continue its research on the benefits of participation in creative and cultural activity across the life course.</p>
+    <h3>3. Capacity building</h3>
+    <p>Creative Ireland is funding the Clinical Creativity collaboration between UCD Medical School and the National College of Art &amp; Design to develop training in arts and health for medical students.</p>
+    <h3>4. Delivery</h3>
+    <p>a. The next iteration of the <strong><u>Traveller Wellbeing Through Creativity</u></strong> Scheme was developed in close collaboration with the Traveller community by the HSE and The Arts Council, with the objective of expanding this initiative and ensuring sustainable delivery by embedding it in the HSE and making to truly Traveller led.</p>
+    <p>b. The Arts Council delivered a research report on the role of Arts and Health in HSE-funded Social Prescribing. The report explores potential models to sustainably integrate and scale arts and health within the All-Ireland Social Prescribing Network. This work will be a key focus for the National Creative Arts and Health Working group in 2026.</p>
+    <p>c. Jointly funded by Creative Ireland and the Department of Health, The Live <strong><u>Music in Residential Healthcare Settings scheme</u></strong> continued to deliver meaningful, measurable impact for older people, with live performances facilitated in 79 nursing homes by Health and Wellbeing teams in thirteen local authorities. <strong><u>Evidence</u></strong> of the impact from this initiative informed the decision to continue the programme in 2026, confirming its value as an evidence-based model for enhancing care through creativity.</p>
+    <p>d. Creative Ireland provided €1m (including €0.25m in Shared Island funding) for a second year of support for 15 projects designed and delivered through partnerships between Creative Ireland and Healthy Ireland teams in local authorities, working with their local HSE teams. An independent evaluation, to be published in Q1 2026, provides robust evidence of the positive health and wellbeing outcomes of this scheme.</p>
+  </div>
+</section>
+
+<!-- CREATIVE CLIMATE — Video Banner -->
+<div class="video-banner" id="climate">
+  <video autoplay muted loop playsinline>
+    <source src="assets/Videos/Creative%20Climate.mp4" type="video/mp4">
+  </video>
+  <div class="video-banner-overlay"></div>
+  <div class="video-banner-text">
+    <span class="script-title">Creative<br>Climate</span>
+  </div>
+</div>
+
+<!-- CREATIVE CLIMATE — Content (2-col: info left | body + photo stacked right) -->
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;" id="climate-content">
+  <div>
+    <span class="section-script-title">Creative Climate Action and Sustainability</span>
+    <div class="partners-box">Creative Ireland in partnership with the Department of the Taoiseach Shared Island initiative and the Department of Climate, Energy and the Environment</div>
+    <p class="big-pull" style="font-size:26px;line-height:1.4;">In 2025, the Climate Action Fund delivered 19 Ignite Projects, investing a total of €2.8 million.</p>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <p>In 2025 Creative Ireland continued to deliver the three-year, €6.3 million Creative Climate Action Fund II: Agents of Change (2023-2025), supporting creative practitioners and communities to address sustainability, biodiversity and behavioural change around climate action through creative engagement.</p>
+      <p>Phase II of the Fund supported 23 Spark projects (up to €50,000) and 16 Ignite projects (up to €250,000), in partnership with DCEE. In addition, three Ignite projects were supported through the Shared Island initiative. This represents a total investment of €8.5 million in 57 Creative Climate Action projects since the fund's inception in 2021.</p>
+      <p>23 Spark projects concluded in 2024 and 19 Ignite projects concluded in 2025. These projects were delivered through a range of stakeholders including local authorities, universities, climate organisations, creative organisations, and local communities, bringing together a vibrant cross-section of civil society to deliver thought-provoking and engaging projects.</p>
+      <p>Capacity building remained a core element of delivery in 2025. Creative Ireland supported funded projects through structured development supports, strengthening skills in climate policy literacy, creative facilitation, project design, and evaluation while fostering cross-sectoral learning and collaboration with partners including DCEE and the Environmental Protection Agency. The SEAI inaugurated a new award for 'warming up the boardroom', in partnership with Creative Ireland.</p>
+    </div>
+    <div class="photo-block">
+      <img src="assets/turas-cottage.jpg" alt="Turas, Burrenbeo Trust">
+      <p class="photo-caption">Turas, Burrenbeo Trust</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLIMATE PULL QUOTE + 2-col body -->
+<section class="two-col" style="padding:64px 80px;background:#CBC1A3;">
+  <div>
+    <p class="big-pull">The ability to engage, inspire and mobilise communities positions culture and creativity as pivotal agents in the transition towards a more sustainable and inclusive future.</p>
+    <div class="photo-block" style="margin-top:28px;">
+      <img src="assets/divergently-together.jpg" alt="Divergently Together, DCU">
+      <p class="photo-caption">Divergently Together, DCU</p>
+    </div>
+  </div>
+  <div class="right-col">
+    <p>An independent research partnership with UCC MaREI (SFI Research Centre for Energy, Climate and Marine), continued in 2025. The interim report, <strong><u>Creative Climate Change II – Report Year One</u></strong>, published in March 2025, presents early findings on the role of arts and creative practice in engaging communities with the climate crisis. In addition, all Spark project Reports were completed in 2025 with Ignite project evaluations to follow in 2026. The published reports are available <strong><u>here</u></strong> and are a rich source of inspiration and learning.</p>
+    <p>Ireland worked closely with other Member States and the European Commission on the EU <strong><u>Creative Shifts: empowering culture for sustainable living</u></strong> report which was published in December 2025. The report highlights how the Creative Climate Action Fund is a model of good practice in Europe, demonstrating how the cultural and creative sectors have the 'ability to engage, inspire and mobilise communities positions them as pivotal agents in the transition towards a more sustainable and inclusive future'.</p>
+    <p>Through the Shared Island initiative, Creative Ireland invested €1.06 million to support three Creative Climate Action projects delivering cross-border and shared learning approaches to climate engagement, empowering citizens to take meaningful action through creative and cultural practice. These projects highlighted how the themes of: shared waterways and shorelines; supporting company boardrooms north and south to tackle the knotty problem of climate change, and supporting neurodiverse communities to engage with and support the climate agenda are truly all-island problems and tackling them together will ensure better outcomes.</p>
+  </div>
+</section>
+
+<!-- CREATIVE INDUSTRIES — Photo Banner -->
+<div class="photo-banner" id="industries">
+  <img src="assets/digital-catapult.jpg" alt="Digital Catapult, Digital Twin Centre">
+  <div class="photo-banner-overlay" style="background:rgba(0,0,0,0.5)"></div>
+  <div class="photo-banner-caption">Digital Catapult, Digital Twin Centre</div>
+  <div class="photo-banner-text">
+    <span class="script">Creative<br>Industries</span>
+  </div>
+</div>
+
+<!-- CREATIVE INDUSTRIES — Content (2-col: info left | body + photo stacked right) -->
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;" id="industries-content">
+  <div>
+    <span class="section-script-title">Creative Industries</span>
+    <div class="partners-box">Creative Ireland in partnership with the Department of Enterprise, Tourism and Employment, Department of Further and Higher Education, Research, Innovation and Science, Skillnet Ireland, Screen Ireland, Údarás na Gaeltachta, Enterprise Ireland, Design &amp; Crafts Council Ireland</div>
+    <p class="big-pull" style="font-size:26px;line-height:1.4;">In 2025, funding of €463k was provided to Creative Industries.</p>
+  </div>
+  <div>
+    <div class="right-col" style="margin-bottom:28px;">
+      <p>The <strong><u>Digital Creative Industries Roadmap</u></strong> 2024–26 focuses on design-intensive industries with strong potential to drive innovation, competitiveness and future job creation, including commercial design, digital games, immersive technologies (AR/VR) and commercial creative agencies. Through the Digital Creative Industries Forum government and industry is working together to leverage the clear potential of these sectors to support sustainable and resilient employment, export growth, and regional development. An update was provided to government in December 2025 on the progress of the Roadmap to date. A key priority has been strengthening the industry voice. €463k in core funding provided by Creative Ireland is enabling representative bodies to grow membership, expand support services for these emerging and nascent sectors, and ensure their effective participation in the Forum and implementation of the Roadmap.</p>
+      <p>The Forum has developed a data framework to measure the economic contribution of the target sectors. This includes value added and wage creation, employment and skills development; their role as catalysts for innovation and wider spillover impacts across the creative industries ecosystem, as well as their importance in embedding creativity as a critical transversal skill across the economy.</p>
+      <p>A Skills Subgroup is developing a creative, cultural and design industries skills taxonomy, fostering engagement between industry and third-level education, and promoting awareness of careers pathways in the digital creative industries. The Regional Subgroup is developing a pilot project to demonstrate the value of the target sectors to the MedTech sector, while also supporting their inclusion in new Regional Enterprise Plans.</p>
+    </div>
+    <div class="photo-block">
+      <img src="assets/prism-dundalk.jpg" alt="PRISM, Dundalk" style="aspect-ratio:4/3;">
+      <p class="photo-caption">PRISM, Dundalk</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHARED ISLAND FINAL BANNER -->
+<div class="video-banner">
+  <video autoplay muted loop playsinline>
+    <source src="assets/Videos/SharedIsland.mp4" type="video/mp4">
+  </video>
+  <div class="video-banner-overlay"></div>
+  <div class="video-banner-text">
+    <span class="script-title">Shared<br>Island</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-cta-line">To find out more go to</p>
+  <a href="https://www.creativeireland.gov.ie" class="footer-url" target="_blank" rel="noopener">www.creativeireland.gov.ie</a>
+  <div class="footer-bottom">
+    <div class="footer-logos">
+      <img src="assets/ci-logo-black.png" alt="Clár Éire Ildánach – Creative Ireland Programme" style="height:120px;mix-blend-mode:multiply;">
+    </div>
+    <div class="social-row">
+      <a href="https://www.facebook.com/creativeireland" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@creativeireland" class="social-btn" aria-label="TikTok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.87a8.27 8.27 0 0 0 4.83 1.54V7a4.85 4.85 0 0 1-1.06-.31z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/creativeireland" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/creative-ireland" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.youtube.com/creativeireland" class="social-btn" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('site-nav');
+  var logo = document.getElementById('nav-logo');
+  var threshold = document.querySelector('.photo-banner.hero').offsetHeight - 20;
+  function update(){
+    var scrolled = window.scrollY > threshold;
+    nav.classList.toggle('scrolled', scrolled);
+    logo.src = scrolled ? 'assets/ci-logo-black.png' : 'assets/ci-logo-white.png';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+<script>
+(function(){
+  var overlay = document.getElementById('nav-overlay');
+  document.querySelector('.nav-menu').addEventListener('click', function(){ overlay.classList.add('open'); });
+  document.getElementById('overlay-close').addEventListener('click', function(){ overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+</script>
+</body>
+</html>

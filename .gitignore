@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Claude Code session data
+.claude/
+
+# Raw InDesign export sources in Links (only Ireland_vector.svg is needed)
+assets/Links/*.jpg
+assets/Links/*.JPG
+assets/Links/*.jpeg
+assets/Links/*.JPEG
+assets/Links/*.png
+assets/Links/*.eps
+assets/Links/*.EPS
+
+# Duplicate/unused fonts in Document fonts (only fonnts.com-Sparose.ttf is needed)
+assets/Document fonts/FoundersGrotesk-*.otf
+assets/Document fonts/QuadraatProTT-*.ttf
+assets/Document fonts/AdobeFnt*.lst
