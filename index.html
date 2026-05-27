@@ -97,6 +97,7 @@ nav.scrolled{
 .video-banner{
   position:relative;
   height:100vh;overflow:hidden;background:#2a2a28;
+  cursor:url('assets/cursor.svg') 50 50,pointer;
 }
 .photo-banner.hero{height:100vh}
 .photo-banner.hero .photo-banner-text{bottom:56px;left:56px}
@@ -743,12 +744,8 @@ footer{
 </section>
 
 <!-- OVERALL IMPACT — Video Banner (static fallback) -->
-<div class="video-banner" id="overall-impact" style="background-image:url('assets/costume-performer.jpg');background-size:cover;background-position:center;">
+<div class="video-banner" id="overall-impact" data-yt="https://www.youtube.com/watch?v=KFFv5pXAthQ" style="background-image:url('assets/costume-performer.jpg');background-size:cover;background-position:center;">
   <div class="video-banner-overlay"></div>
-  <a href="https://www.youtube.com/watch?v=KFFv5pXAthQ" class="yt-play-btn" target="_blank" rel="noopener" aria-label="Watch Overall Impact on YouTube">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.35)"/><polygon points="10,8 17,12 10,16" fill="#fff"/></svg>
-    Watch on YouTube
-  </a>
   <div class="video-banner-text">
     <span class="serif-title">Overall<br>Impact</span>
   </div>
@@ -796,7 +793,7 @@ footer{
 </div>
 
 <!-- CREATIVE COMMUNITIES — Video Banner -->
-<div class="video-banner" id="communities">
+<div class="video-banner" id="communities" data-yt="https://www.youtube.com/watch?v=MtPsEJw0hkI">
   <video autoplay muted loop playsinline>
     <source src="assets/Videos/CreativeCommunities.mp4" type="video/mp4">
   </video>
@@ -1031,7 +1028,7 @@ footer{
 </section>
 
 <!-- CREATIVE HEALTH — Video Banner -->
-<div class="video-banner" id="health">
+<div class="video-banner" id="health" data-yt="https://www.youtube.com/watch?v=DkvDC7lhF5c">
   <video autoplay muted loop playsinline>
     <source src="assets/Videos/Creative%20Health%20%26%20wellbeing.mp4" type="video/mp4">
   </video>
@@ -1088,7 +1085,7 @@ footer{
 </section>
 
 <!-- CREATIVE CLIMATE — Video Banner -->
-<div class="video-banner" id="climate">
+<div class="video-banner" id="climate" data-yt="https://www.youtube.com/watch?v=eQQ06LuHScw">
   <video autoplay muted loop playsinline>
     <source src="assets/Videos/Creative%20Climate.mp4" type="video/mp4">
   </video>
@@ -1225,6 +1222,15 @@ footer{
   document.getElementById('overlay-close').addEventListener('click', function(){ overlay.classList.remove('open'); });
   overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.video-banner[data-yt]').forEach(function(el){
+    el.addEventListener('click', function(){
+      window.open(el.getAttribute('data-yt'), '_blank', 'noopener,noreferrer');
+    });
+  });
 })();
 </script>
 </body>
