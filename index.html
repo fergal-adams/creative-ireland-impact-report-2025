@@ -30,7 +30,7 @@
   --ui:'Founders Grotesk',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--body);color:var(--dark);background:var(--page-bg);font-size:15px;line-height:1.65}
+body{font-family:var(--body);color:var(--dark);background:var(--page-bg);font-size:16px;line-height:1.65}
 
 /* ── NAV ── */
 nav{
@@ -210,8 +210,8 @@ nav.scrolled{
 .partners-box{
   background:rgba(0,0,0,0.06);border-radius:8px;
   padding:28px 24px;margin-top:20px;margin-bottom:44px;
-  font-family:var(--ui);font-size:14px;font-weight:600;
-  color:var(--dark);line-height:calc(18/14);
+  font-family:var(--ui);font-size:15px;font-weight:500;
+  color:var(--dark);line-height:1.5;
   max-width:400px;
 }
 .big-pull{
@@ -222,7 +222,7 @@ nav.scrolled{
 #communities-content .big-pull{font-size:38px;line-height:1.2;color:var(--dark)}
 
 /* ── RIGHT COL STYLES ── */
-.right-col p{font-family:var(--body);font-size:16px;font-weight:400;line-height:calc(22/16);color:#000;margin-bottom:14px}
+.right-col p{font-family:var(--body);font-size:17px;font-weight:400;line-height:1.6;color:#000;margin-bottom:1em}
 .right-col p:last-child{margin-bottom:0}
 .right-col h3{
   font-family:var(--serif);font-size:25px;font-weight:400;
@@ -231,10 +231,16 @@ nav.scrolled{
 }
 .right-col h3:first-child{margin-top:0}
 .right-col a{color:var(--dark)}
+/* Strip extra bold from linked <strong> — underline is sufficient affordance */
+a strong{font-weight:500}
 /* links inside the dark-gold Shared Island slide */
 [style*="background:#7a6535"] a{color:#e8d9b0}
+/* Override inline font-size:14px on policy-area list items */
+#operate-content ul li{font-size:15px!important;line-height:1.6}
+/* Override inline font-size:13px on pillar-table descriptions */
+.pillars-table td:not(:first-child){font-size:14px!important}
 .right-col ul{padding-left:18px;margin:8px 0}
-.right-col ul li{font-size:13px;color:var(--mid);margin-bottom:6px;line-height:1.55}
+.right-col ul li{font-size:16px;color:var(--mid);margin-bottom:6px;line-height:1.6}
 
 /* ── THREE COL INTRO ── */
 .intro-left h2,.two-col h2,.impact-cards h2{font-family:var(--serif);font-size:26px;font-weight:700;line-height:calc(27/26);color:#000;margin-bottom:8px}
@@ -246,7 +252,7 @@ nav.scrolled{
 .photo-block{display:flex;flex-direction:column;gap:8px}
 .photo-block img{width:100%;display:block;object-fit:cover;border-radius:24px}
 .photo-block.tall img{aspect-ratio:3/4}
-.photo-caption{font-family:var(--ui);font-size:13px;font-weight:500;color:var(--muted);line-height:1.45;margin-top:2px;}
+.photo-caption{font-family:var(--ui);font-size:14px;font-weight:500;color:var(--muted);line-height:1.45;margin-top:4px;}
 
 /* ── STACKED IMAGES ── */
 .stacked-images{display:flex;flex-direction:column;gap:16px}
@@ -320,7 +326,7 @@ nav.scrolled{
 .pillars-table tr{border-bottom:1px solid var(--rule)}
 .pillars-table tr:first-child{border-top:1px solid var(--rule)}
 .pillars-table td{
-  padding:12px 0;font-size:13px;color:var(--mid);vertical-align:top;
+  padding:12px 0;font-size:14px;color:var(--mid);vertical-align:top;
 }
 .pillars-table td:first-child{
   font-family:var(--ui);font-weight:700;color:var(--dark);
@@ -616,7 +622,7 @@ footer{
 <section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px 64px 0;row-gap:0;" id="operate-content">
   <h2 style="grid-column:1/-1;padding-left:80px;margin-bottom:28px;">How does Creative Ireland operate?</h2>
   <div class="pillars-panel">
-    <p style="font-family:var(--ui);font-size:11.5px;font-weight:700;margin-bottom:12px;">The five strategic pillars of Creative Ireland</p>
+    <p style="font-family:var(--ui);font-size:13px;font-weight:700;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">The five strategic pillars of Creative Ireland</p>
     <table class="pillars-table">
       <tr>
         <td>Creative Communities</td>
