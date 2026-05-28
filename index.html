@@ -459,6 +459,22 @@ footer{
   .video-banner{height:100vh}
   .photo-banner{height:100vh}
   nav{padding:12px 24px}
+  /* Collapse inline-styled 2-col and asymmetric grids — !important overrides inline style specificity */
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:1fr 2fr"],[style*="grid-template-columns:2fr 1fr"]{grid-template-columns:1fr!important;}
+  /* Reduce inline section padding */
+  [style*="padding:64px 80px"]{padding:40px 32px!important;}
+  [style*="padding:0 80px 56px"]{padding:0 32px 40px!important;}
+  /* Ireland stat — reset flush-left negative margin offset */
+  .ireland-stat{margin-left:0!important;padding-left:32px!important;border-radius:24px!important;}
+  /* Partners box — allow full width */
+  .partners-box{max-width:100%!important;}
+  /* Photo block percentage widths — allow full width */
+  .photo-block[style*="max-width"]{max-width:100%!important;}
+  /* Operate-content heading — remove extra left indent */
+  #operate-content > h2{padding-left:0!important;}
+  /* Nav logo — shrink on tablet */
+  .nav-logo-img{height:56px!important;}
 }
 @media(max-width:600px){
   .two-col,.intro-section,.full-quote-section,.three-cols-info,.org-section{padding:28px 20px}
@@ -472,6 +488,28 @@ footer{
   .photo-banner-text .script,.photo-banner-text .serif{font-size:40px;line-height:38px}
   .photo-banner.hero .photo-banner-text .script{font-size:40px;line-height:1}
   .photo-banner.hero .photo-banner-text .serif{font-size:52px;line-height:0.92}
+  /* Inline section padding — tighter on phones */
+  [style*="padding:64px 80px"]{padding:28px 20px!important;}
+  [style*="padding:0 80px 56px"]{padding:0 20px 24px!important;}
+  /* Collapse 3-col policy area / timeline grids to single column */
+  [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important;}
+  /* Banner text — smaller on phones */
+  .video-banner-text .script-title,.video-banner-text .serif-title{font-size:40px!important;line-height:1.1!important;}
+  /* Contents list — reduce from 36px */
+  .contents-list li{font-size:22px!important;line-height:1.35!important;}
+  /* Big pull — scale down */
+  .big-pull,.big-pull.italic{font-size:19px!important;line-height:1.5!important;}
+  #communities-content .big-pull{font-size:22px!important;line-height:1.35!important;}
+  /* Nav logo — phone size */
+  .nav-logo-img{height:36px!important;}
+  /* Creative Careers section — hide empty spacer so photo aligns left */
+  [style*="padding:0 80px 56px"] > div:empty{display:none!important;}
+  /* Footer URL — smaller on phones */
+  .footer-url{font-size:24px!important;}
+  /* Footer — remove full-screen min-height, stack logo + socials */
+  footer{min-height:0!important;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:20px;}
+  .footer-logos img{height:64px!important;}
 }
 </style>
 </head>
