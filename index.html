@@ -39,7 +39,7 @@ nav{
   padding:14px 40px;
   color:#fff;
   background:transparent;
-  transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease;
+  transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,opacity 0.4s ease;
 }
 nav.scrolled{
   color:var(--dark);
@@ -362,8 +362,8 @@ nav.scrolled{
 /* ── FINDINGS LIST ── */
 .findings-list{list-style:none;padding:0;margin-top:16px}
 .findings-list li{
-  padding:12px 0;border-bottom:1px solid var(--rule);
-  font-size:13px;color:var(--mid);
+  padding:14px 0;border-bottom:1px solid var(--rule);
+  font-size:16px;font-weight:500;color:var(--dark);line-height:1.4;
 }
 .findings-list li:first-child{border-top:1px solid var(--rule)}
 
@@ -978,11 +978,11 @@ footer{
 
 <!-- CREATIVE YOUTH — Content (2-col: info left | body + photos stacked right) -->
 <section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;" id="youth-content">
-  <div>
+  <div style="display:flex;flex-direction:column;">
     <span class="section-script-title">Creative Youth</span>
     <div class="partners-box">Creative Ireland in partnership with the Department of Education and Youth, the Department of Children Disability and Equality, the Department of Further and Higher Education, Research, Innovation and Science and The Arts Council.</div>
     <p class="big-pull">In 2025, DCCS funding of €2.4 million (including Shared Island) supported 30 Creative Youth initiatives, including eight Local Creative Youth Partnerships, nine Nurture Fund projects and six Shared Island projects.</p>
-    <div class="ireland-stat">
+    <div class="ireland-stat" style="margin-top:auto;">
       <div class="ireland-map">
         <img src="assets/Links/Ireland_vector.svg" alt="Map of Ireland">
       </div>
@@ -1027,11 +1027,13 @@ footer{
 <!-- CREATIVE YOUTH — Shared Island content -->
 <section class="page-bg" style="padding:64px 80px;">
   <div class="right-col" style="max-width:700px;">
-    <h3>Creative Youth on a Shared Island</h3>
-    <p>Through the Shared Island initiative, €900,000 supported six <strong><u>Creative Youth on a Shared Island</u></strong> projects during 2024–2025. The projects enabled meaningful interactions between young people across the Island through song writing, storytelling, theatre, parade, creative writing and dance. Representatives from all six projects participated in our Shared Island Conference in November 2025.</p>
-    <p>In 2025, Creative Youth also commenced new cross-government initiatives to engage young people. The <strong>Creative Careers</strong> pilot was officially launched at the Higher Options and World Skills events in the RDS in September, designed to raise awareness among 16–18 year-olds of the range of career possibilities in the cultural and creative industries. Coordinated by Creative Ireland, Creative Careers brought together agencies under the aegis of the Department of Culture including The Arts Council, Screen Ireland and Coimisiún na Meán.</p>
-    <p>In addition, Creative Youth, led by DFHERIS and key stakeholders in further and higher education is developing a Creative Campus concept within tertiary education settings. The initiative aims to "identify aims, principles and features of a creative campus, in collaboration with further and higher education institutions, the creative sectors and communities". Engagement with these stakeholders was supported by a comprehensive survey and consultation event hosted in TU Dublin in November 2025.</p>
-    <p>A key objective for the next phase of delivery for Creative Youth is the continued strengthening of the evidence base through research. In November, Creative Ireland, in partnership with DCDE and DEY, and the ESRI, established a joint programme of research on children and young people's engagement in creative and cultural activities. This research programme will run from 2025–2027.</p>
+    <div style="background:#7a6535;border-radius:20px;padding:28px 32px;margin-top:28px;">
+    <h3 style="color:#e8d9b0;">Creative Youth on a Shared Island</h3>
+    <p style="color:rgba(255,255,255,0.88);">Through the Shared Island initiative, €900,000 supported six <strong><u>Creative Youth on a Shared Island</u></strong> projects during 2024–2025. The projects enabled meaningful interactions between young people across the Island through song writing, storytelling, theatre, parade, creative writing and dance. Representatives from all six projects participated in our Shared Island Conference in November 2025.</p>
+    <p style="color:rgba(255,255,255,0.88);">In 2025, Creative Youth also commenced new cross-government initiatives to engage young people. The <strong>Creative Careers</strong> pilot was officially launched at the Higher Options and World Skills events in the RDS in September, designed to raise awareness among 16–18 year-olds of the range of career possibilities in the cultural and creative industries. Coordinated by Creative Ireland, Creative Careers brought together agencies under the aegis of the Department of Culture including The Arts Council, Screen Ireland and Coimisiún na Meán.</p>
+    <p style="color:rgba(255,255,255,0.88);">In addition, Creative Youth, led by DFHERIS and key stakeholders in further and higher education is developing a Creative Campus concept within tertiary education settings. The initiative aims to "identify aims, principles and features of a creative campus, in collaboration with further and higher education institutions, the creative sectors and communities". Engagement with these stakeholders was supported by a comprehensive survey and consultation event hosted in TU Dublin in November 2025.</p>
+    <p style="color:rgba(255,255,255,0.88);">A key objective for the next phase of delivery for Creative Youth is the continued strengthening of the evidence base through research. In November, Creative Ireland, in partnership with DCDE and DEY, and the ESRI, established a joint programme of research on children and young people's engagement in creative and cultural activities. This research programme will run from 2025–2027.</p>
+    </div>
   </div>
 </section>
 
@@ -1230,6 +1232,13 @@ footer{
   document.getElementById('overlay-close').addEventListener('click', function(){ overlay.classList.remove('open'); });
   overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') overlay.classList.remove('open'); });
+
+  // Hide nav when footer is visible
+  var nav = document.querySelector('nav');
+  new IntersectionObserver(function(entries){
+    nav.style.opacity = entries[0].isIntersecting ? '0' : '';
+    nav.style.pointerEvents = entries[0].isIntersecting ? 'none' : '';
+  }, {threshold: 0.05}).observe(document.querySelector('footer'));
 })();
 </script>
 <script>
