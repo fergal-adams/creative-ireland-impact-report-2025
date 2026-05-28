@@ -318,8 +318,8 @@ nav.scrolled{
 /* ── PILLARS PANEL ── */
 .pillars-panel{
   background:rgba(255,255,255,0.10);
-  border-radius:0 28px 28px 0;
-  padding:32px 48px 64px 80px;
+  border-radius:12px;
+  padding:32px 40px;
   align-self:stretch;
 }
 .pillars-table{width:100%;border-collapse:collapse;margin-top:20px}
@@ -471,8 +471,6 @@ footer{
   .partners-box{max-width:100%!important;}
   /* Photo block percentage widths — allow full width */
   .photo-block[style*="max-width"]{max-width:100%!important;}
-  /* Operate-content heading — remove extra left indent */
-  #operate-content > h2{padding-left:0!important;}
   /* Nav logo — shrink on tablet */
   .nav-logo-img{height:56px!important;}
 }
@@ -504,6 +502,8 @@ footer{
   .nav-logo-img{height:36px!important;}
   /* Creative Careers section — hide empty spacer so photo aligns left */
   [style*="padding:0 80px 56px"] > div:empty{display:none!important;}
+  /* Timeline — hide dots and connecting line when columns stack */
+  .timeline-dot,.timeline-rule{display:none!important;}
   /* Footer URL — smaller on phones */
   .footer-url{font-size:24px!important;}
   /* Footer — remove full-screen min-height, stack logo + socials */
@@ -657,8 +657,8 @@ footer{
 </div>
 
 <!-- HOW DOES CI OPERATE — Content (2-col: pillars | body + photo stacked) -->
-<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px 64px 0;row-gap:0;" id="operate-content">
-  <h2 style="grid-column:1/-1;padding-left:80px;margin-bottom:28px;">How does Creative Ireland operate?</h2>
+<section class="two-col page-bg" style="grid-template-columns:1fr 1fr;padding:64px 80px;row-gap:0;" id="operate-content">
+  <h2 style="grid-column:1/-1;margin-bottom:28px;">How does Creative Ireland operate?</h2>
   <div class="pillars-panel">
     <p style="font-family:var(--ui);font-size:13px;font-weight:700;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">The five strategic pillars of Creative Ireland</p>
     <table class="pillars-table">
@@ -724,15 +724,12 @@ footer{
     <p>A core focus in 2025 was embedding creativity within policy frameworks at national and local level.</p>
     <p>Through local authority Culture and Creativity Strategies, Creative Ireland continued to strengthen its key partnership with the local government and the County and City Management Association. Creative Ireland funded projects continue to align with and enable Development Plans and Local Economic and Community Plans, including Age Friendly Ireland, Healthy Communities, Community Safety Partnerships and Town Centre First.</p>
   </div>
-  <!-- Timeline: dots in same 3-col grid so they align exactly with column starts -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;position:relative;margin-bottom:20px;">
-    <div style="position:absolute;top:6px;left:6px;right:calc(33.333% - 6px);height:1px;background:var(--dark);"></div>
-    <div style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;"></div>
-    <div style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;"></div>
-    <div style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;"></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;">
+  <!-- Timeline: single grid — dots live inside each column so they align with headings -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative;">
+    <!-- Connecting line: from col-1 dot centre (left:6px) to col-3 dot centre (right:calc(33.333% - 30px)) -->
+    <div class="timeline-rule" style="position:absolute;top:6px;left:6px;right:calc(33.333% - 30px);height:1px;background:var(--dark);pointer-events:none;z-index:0;"></div>
     <div style="padding-right:32px;">
+      <div class="timeline-dot" style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;margin-bottom:16px;"></div>
       <h4 style="font-family:var(--ui);font-size:14px;font-weight:700;margin-bottom:16px;">Policy areas</h4>
       <ul style="list-style:none;padding:0;">
         <li style="font-size:14px;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--rule)">Children and young people</li>
@@ -742,7 +739,8 @@ footer{
         <li style="font-size:14px;color:var(--mid);padding:8px 0">Creative industries</li>
       </ul>
     </div>
-    <div style="padding-right:32px;border-left:1px solid var(--rule);padding-left:24px;">
+    <div style="border-left:1px solid var(--rule);padding-left:24px;padding-right:32px;">
+      <div class="timeline-dot" style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;margin-bottom:16px;"></div>
       <h4 style="font-family:var(--ui);font-size:14px;font-weight:700;margin-bottom:16px;">Government Departments</h4>
       <ul style="list-style:none;padding:0;">
         <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Department of the Taoiseach</li>
@@ -757,6 +755,7 @@ footer{
       </ul>
     </div>
     <div style="border-left:1px solid var(--rule);padding-left:24px;">
+      <div class="timeline-dot" style="width:13px;height:13px;border-radius:50%;background:var(--dark);position:relative;z-index:1;margin-bottom:16px;"></div>
       <h4 style="font-family:var(--ui);font-size:14px;font-weight:700;margin-bottom:16px;">State Agencies and Partners</h4>
       <ul style="list-style:none;padding:0;">
         <li style="font-size:14px;color:var(--mid);padding:6px 0;border-bottom:1px solid var(--rule)">Skillnet Ireland</li>
@@ -889,10 +888,10 @@ footer{
 </section>
 
 <!-- CC ORG CHART — on #AD9F71 background -->
-<section style="background:#AD9F71;padding:64px 80px;display:grid;grid-template-columns:1fr 2fr;gap:56px;align-items:start;">
-  <p class="big-pull" style="font-size:28px;line-height:1.35;padding-top:40px;">In 2025 funding of €7.8 million supported 1,495 projects, and an additional 1,184 Cruinniú na nÓg events, held on Saturday 7 June. This investment supported 17,424 creative practitioners across the island of Ireland.</p>
-  <div class="org-chart-wrap">
-    <svg viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;height:auto;" aria-label="Culture and Creativity Teams org chart">
+<section style="background:#AD9F71;padding:64px 80px;">
+  <p class="big-pull" style="font-size:28px;line-height:1.35;max-width:700px;margin-bottom:48px;">In 2025 funding of €7.8 million supported 1,495 projects, and an additional 1,184 Cruinniú na nÓg events, held on Saturday 7 June. This investment supported 17,424 creative practitioners across the island of Ireland.</p>
+  <div class="org-chart-wrap" style="margin:0 auto;">
+    <svg viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;" aria-label="Culture and Creativity Teams org chart">
       <defs>
         <style>
           .rl{font-family:'Founders Grotesk',sans-serif;font-size:14px;fill:#1a1a18;text-anchor:middle;dominant-baseline:middle}
