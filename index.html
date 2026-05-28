@@ -244,7 +244,7 @@ nav.scrolled{
 .photo-block{display:flex;flex-direction:column;gap:8px}
 .photo-block img{width:100%;display:block;object-fit:cover;border-radius:24px}
 .photo-block.tall img{aspect-ratio:3/4}
-.photo-caption{font-family:var(--ui);font-size:11px;color:var(--muted);line-height:1.4}
+.photo-caption{font-family:var(--ui);font-size:13px;font-weight:500;color:var(--muted);line-height:1.45;margin-top:2px;}
 
 /* ── STACKED IMAGES ── */
 .stacked-images{display:flex;flex-direction:column;gap:16px}
@@ -274,7 +274,7 @@ nav.scrolled{
   color:var(--dark);letter-spacing:-0.02em;
 }
 .impact-label{
-  font-family:var(--ui);font-size:15px;font-weight:600;line-height:1.25;color:var(--dark);
+  font-family:var(--ui);font-size:17px;font-weight:600;line-height:1.25;color:var(--dark);
   display:block;margin-top:10px;margin-bottom:16px;padding-bottom:16px;
   border-bottom:1px solid rgba(0,0,0,0.18);
 }
@@ -1230,6 +1230,39 @@ footer{
   document.getElementById('overlay-close').addEventListener('click', function(){ overlay.classList.remove('open'); });
   overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.classList.remove('open'); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+</script>
+<script>
+(function(){
+  // Count-up animation for impact numbers
+  var counted = new WeakSet();
+  function countUp(el){
+    var text = el.textContent.trim();
+    var m = text.match(/^([€£$]?)(\d[\d,]*)([a-zA-Z]*)$/);
+    if(!m) return;
+    var pre=m[1], raw=parseInt(m[2].replace(/,/g,''),10), suf=m[3];
+    if(isNaN(raw)) return;
+    var dur=1600, start=null;
+    function ease(t){return 1-Math.pow(1-t,3);}
+    function fmt(n){return n>=1000?Math.floor(n).toLocaleString('en-IE'):Math.floor(n).toString();}
+    function step(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      el.textContent=pre+fmt(ease(p)*raw)+suf;
+      if(p<1) requestAnimationFrame(step); else el.textContent=pre+fmt(raw)+suf;
+    }
+    el.textContent=pre+'0'+suf;
+    requestAnimationFrame(step);
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !counted.has(e.target)){
+        counted.add(e.target);
+        countUp(e.target);
+      }
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.impact-num').forEach(function(el){obs.observe(el);});
 })();
 </script>
 <script>
