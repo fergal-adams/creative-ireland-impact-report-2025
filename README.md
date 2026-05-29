@@ -8,6 +8,34 @@ Static HTML microsite for the Creative Ireland Programme's 2025 Impact Report.
 
 ---
 
+## Deploying to WordPress (Option A — upload whole folder)
+
+Upload these files/folders to a subfolder on the WordPress server (e.g. via FTP/SFTP or the hosting file manager):
+
+```
+✅ index.html
+✅ .htaccess
+✅ assets/*.webp          (images — ~5MB)
+✅ assets/*.png           (logos)
+✅ assets/*.otf           (Founders Grotesk font files)
+✅ assets/*.ttf           (FF Quadraat + Sparose font files)
+✅ assets/*.svg           (cursor)
+✅ assets/Videos/         (MP4 video banners — ~18MB)
+
+❌ assets/Links/          (120MB of original InDesign source files — NOT needed)
+❌ assets/Document fonts/ (reference only — NOT needed)
+❌ assets/Resized Assets/ (working copies — NOT needed)
+❌ README.md              (not needed on server)
+```
+
+**Total upload size: ~24MB** (not 153MB — leave the Links folder out).
+
+The `.htaccess` file ensures the server sends correct MIME types for WebP images, MP4 video, and self-hosted fonts. Without it some hosts will silently drop assets.
+
+Once uploaded, the page is accessible directly at its folder URL — no WordPress page or shortcode needed.
+
+---
+
 ## Background
 
 The site was originally built in Readymag but had compatibility issues in Microsoft Edge. This is a standalone static recreation of the same content, built as a single self-contained HTML file with all assets in a local `assets/` folder.

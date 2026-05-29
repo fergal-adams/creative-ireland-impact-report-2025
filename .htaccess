@@ -1,0 +1,27 @@
+# Creative Ireland Impact Report 2025
+# Ensures correct MIME types for all assets used by the site.
+# Place this file in the same folder as index.html on the server.
+
+<IfModule mod_mime.c>
+  # Images
+  AddType image/webp                  .webp
+
+  # Fonts
+  AddType font/otf                    .otf
+  AddType font/ttf                    .ttf
+  AddType font/woff                   .woff
+  AddType font/woff2                  .woff2
+
+  # Video
+  AddType video/mp4                   .mp4
+
+  # SVG
+  AddType image/svg+xml               .svg
+</IfModule>
+
+# Allow fonts to be loaded cross-origin (needed if site is in a subfolder)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(otf|ttf|woff|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
