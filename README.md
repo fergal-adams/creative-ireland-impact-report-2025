@@ -184,15 +184,9 @@ Icons use inline SVG. Instagram and YouTube required special treatment:
 
 ---
 
-## Known issues / future work
+## Browser support
 
-| Item | Status |
-|---|---|
-| `costume-performer.webp` | Asset exists in `assets/` but is not placed in any section — confirm with client which section it belongs to |
-| `bog-bothy` image | `assets/time-machine.webp` is used as a fallback; original Bog Bothy photo still needed |
-| YouTube video IDs | `data-yt` attributes are on video banner elements but the click-to-play YouTube overlay feature has not been fully implemented — video banners currently just play local MP4 |
-| Cross-browser QA | Tested in Chrome. Edge, Safari, Firefox need sign-off |
-| `CreativeYOuth.mp4` | Typo in filename — if renamed, update `src` in `index.html` at the Creative Youth video banner |
+Tested in Chrome and Edge. Safari and Firefox need sign-off.
 
 ---
 
