@@ -10,25 +10,21 @@ Static HTML microsite for the Creative Ireland Programme's 2025 Impact Report.
 
 ## Deploying to WordPress (Option A — upload whole folder)
 
-Upload these files/folders to a subfolder on the WordPress server (e.g. via FTP/SFTP or the hosting file manager):
+Download the repo as a ZIP (green **Code** button → **Download ZIP**), unzip, and upload the entire folder to a subfolder on the WordPress server (e.g. via FTP/SFTP or the hosting file manager):
 
 ```
 ✅ index.html
 ✅ .htaccess
 ✅ assets/*.webp          (images — ~5MB)
 ✅ assets/*.png           (logos)
-✅ assets/*.otf           (Founders Grotesk font files)
-✅ assets/*.ttf           (FF Quadraat + Sparose font files)
-✅ assets/*.svg           (cursor)
+✅ assets/*.svg           (ireland map + cursor)
+✅ assets/fonts/          (Founders Grotesk + FF Quadraat + Sparose font files)
 ✅ assets/Videos/         (MP4 video banners — ~18MB)
 
-❌ assets/Links/          (120MB of original InDesign source files — NOT needed)
-❌ assets/Document fonts/ (reference only — NOT needed)
-❌ assets/Resized Assets/ (working copies — NOT needed)
 ❌ README.md              (not needed on server)
 ```
 
-**Total upload size: ~24MB** (not 153MB — leave the Links folder out).
+**Total upload size: ~24MB**
 
 The `.htaccess` file ensures the server sends correct MIME types for WebP images, MP4 video, and self-hosted fonts. Without it some hosts will silently drop assets.
 
@@ -49,7 +45,7 @@ The site was originally built in Readymag but had compatibility issues in Micros
 | Markup | Single-file `index.html` — no framework, no build step |
 | Styles | Inline `<style>` block in `<head>` — all CSS in one place |
 | Scripts | Inline `<script>` at bottom of `<body>` |
-| Fonts | Self-hosted `.otf`/`.ttf` files loaded via `@font-face` |
+| Fonts | Self-hosted `.otf`/`.ttf` files in `assets/fonts/`, loaded via `@font-face` |
 | Images | `.webp` (all converted from original JPGs/PNGs) |
 | Videos | Local `.mp4` files (`assets/Videos/`) — autoplay, muted, loop |
 | Deployment | GitHub Pages — push to `main` goes live in ~1 minute |
@@ -75,29 +71,28 @@ python3 -m http.server 8742
 ```
 Creative Ireland Report Site 2025/
 ├── index.html              ← entire site (HTML + CSS + JS)
+├── .htaccess               ← MIME types for Apache/WordPress hosting
 ├── README.md
 └── assets/
     ├── *.webp              ← all page images (WebP)
-    ├── ci-logo-black.png   ← logo for footer (mix-blend-mode:multiply)
-    ├── ci-logo-white.png   ← logo for nav (white on dark background)
-    ├── cursor.svg          ← custom cursor
-    ├── founders-regular.otf         ┐
-    ├── founders-medium.otf          │ Founders Grotesk
-    ├── founders-semibold.otf        │ (UI / body font)
-    ├── founders-italic.otf          ┘
-    ├── quadraat-regular.ttf  ┐ FF Quadraat
-    ├── quadraat-bold.ttf     ┘ (serif / pull-quote font)
-    ├── sparose.ttf           ← Sparose (script / decorative titles)
-    ├── Links/                ← original InDesign export assets (source files, not used directly)
-    ├── Videos/               ← MP4 section banners
-    │   ├── OverallImpact.mp4
-    │   ├── CreativeCommunities.mp4
-    │   ├── CreativeYOuth.mp4         ← note: typo in filename, do not rename
-    │   ├── Creative Health & wellbeing.mp4
-    │   ├── Creative Climate.mp4
-    │   └── SharedIsland.mp4
-    ├── Document fonts/       ← original font files from InDesign (reference only)
-    └── Resized Assets/       ← intermediate working copies (not used in HTML)
+    ├── *.svg               ← ireland-map.svg + cursor.svg
+    ├── ci-logo-black.png   ← logo (footer — mix-blend-mode:multiply)
+    ├── ci-logo-white.png   ← logo (nav — white on dark background)
+    ├── fonts/
+    │   ├── founders-regular.otf     ┐
+    │   ├── founders-medium.otf      │ Founders Grotesk
+    │   ├── founders-semibold.otf    │ (UI / body font)
+    │   ├── founders-italic.otf      ┘
+    │   ├── quadraat-regular.ttf  ┐ FF Quadraat
+    │   ├── quadraat-bold.ttf     ┘ (serif / pull-quote font)
+    │   └── sparose.ttf           ← Sparose (script / decorative titles)
+    └── Videos/
+        ├── OverallImpact.mp4
+        ├── CreativeCommunities.mp4
+        ├── CreativeYOuth.mp4         ← note: typo in filename, do not rename
+        ├── CreativeHealth.mp4
+        ├── CreativeClimate.mp4
+        └── SharedIsland.mp4
 ```
 
 ---
@@ -194,8 +189,7 @@ Icons use inline SVG. Instagram and YouTube required special treatment:
 | Item | Status |
 |---|---|
 | `costume-performer.webp` | Asset exists in `assets/` but is not placed in any section — confirm with client which section it belongs to |
-| `assets/Links/10.png` (woman with vintage camera) | Unassigned — confirm with client |
-| `bog-bothy.jpg` | `assets/time-machine.webp` is used as a fallback; original Bog Bothy photo still needed |
+| `bog-bothy` image | `assets/time-machine.webp` is used as a fallback; original Bog Bothy photo still needed |
 | YouTube video IDs | `data-yt` attributes are on video banner elements but the click-to-play YouTube overlay feature has not been fully implemented — video banners currently just play local MP4 |
 | Cross-browser QA | Tested in Chrome. Edge, Safari, Firefox need sign-off |
 | `CreativeYOuth.mp4` | Typo in filename — if renamed, update `src` in `index.html` at the Creative Youth video banner |
