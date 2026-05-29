@@ -8,7 +8,7 @@ Static HTML microsite for the Creative Ireland Programme's 2025 Impact Report.
 
 ---
 
-## Deploying to WordPress (Option A — upload whole folder)
+## Deploying to WordPress
 
 Download the repo as a ZIP (green **Code** button → **Download ZIP**), unzip, and upload the entire folder to a subfolder on the WordPress server (e.g. via FTP/SFTP or the hosting file manager):
 
